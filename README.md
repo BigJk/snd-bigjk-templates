@@ -14,3 +14,11 @@ My Templates for Sales &amp; Dungeons
 - Template for OSE / OSR Monster Stats
 - Only supports 80mm printing
     - 80mm Screenshot: [Here](./BigJk_ose-monsters/screenshot_80mm.png)
+
+# Map & Text
+
+- Template for displaying a Map with a Text underneath
+- Good fit are small villages generated with https://watabou.github.io/village-generator (use minimal style preset for black and white!)
+- Supports 58mm and 80mm printing
+    - 58mm Screenshot: [Here](./BigJk_map-text/screenshot_58mm.png)
+    - 80mm Screenshot: [Here](./BigJk_map-text/screenshot_80mm.png)

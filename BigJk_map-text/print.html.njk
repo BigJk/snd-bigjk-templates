@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+{% set h_ratio = settings.printerWidth / 975 %}
+
+<style>
+    .frame-top {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-image: url('{{ images["frame_top.png"] }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: {{ h_ratio * 249 }}px;
+        width: 100%;
+    } 
+    
+    .frame-bottom {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-image: url('{{ images["frame_bottom.png"] }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        height: {{ h_ratio * 203 }}px;
+        width: 100%;
+    } 
+    
+    .frame-middle {
+        position: absolute;
+        left: 0;
+        top: calc({{ h_ratio * 249 }}px - 10px);
+        background-image: url('{{ images["frame_middle.png"] }}');
+        background-repeat: repeat-Y;
+        background-size: 100% {{ h_ratio * 411 }}px;
+        background-position: bottom;
+        height: calc(100% - {{ h_ratio * 249 }}px - {{ h_ratio * 203 }}px + 15px);
+        width: 100%;
+    }
+</style>
+
+<div class="sans-serif relative pa2 mb3" style="min-height: 200px;"> 
+	<div class="frame-top"></div>
+	<div class="frame-bottom"></div>
+	<div class="frame-middle"></div>
+
+    <img src="{{ it.image }}" alt="" width="{{ settings.printerWidth }}">
+</div>
+
+{% if it.text | length > 0 %}
+
+<div class="sans-serif relative ph4 pv2 f3" style="min-height: 200px;"> 
+	<div class="frame-top"></div>
+	<div class="frame-bottom"></div>
+	<div class="frame-middle"></div>
+
+    {{ it.text | markdown }}
+</div>
+
+{% endif %}

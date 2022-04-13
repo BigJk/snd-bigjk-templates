@@ -1,0 +1,280 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+<link rel="stylesheet" href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css">
+<link href="https://fonts.googleapis.com/css?family=Acme|Pacifico|Permanent+Marker|Rock+Salt&display=swap" rel="stylesheet">
+
+{% set h_ratio = settings.printerWidth / 975 %}
+
+<style>
+  @font-face {
+    font-family: "Nodesto Caps Condensed";
+    src: url('/proxy?url=https://github.com/jonathonf/solbera-dnd-fonts/raw/master/Nodesto%20Caps%20Condensed/Nodesto%20Caps%20Condensed.otf') format("opentype");
+    font-weight: normal;
+  }
+  
+  @font-face {
+    font-family: "Scaly Sans";
+    src: url('/proxy?url=https://github.com/jonathonf/solbera-dnd-fonts/raw/master/Scaly%20Sans/Scaly%20Sans.otf') format("opentype");
+    font-weight: normal;
+   }
+  
+  body {
+  	font-family: "Scaly Sans" !important;
+  }
+  
+  .bg-basic { background-color: #e8ebec; }
+  .basic 	{ color: #e8ebec; }
+  .acme 	{ font-family: /*'Acme',*/ sans-serif; }
+  .pm 		{ font-family: 'Nodesto Caps Condensed'; word-spacing: 0.25em; }
+  
+  .frame-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url('{{ images["frame_top.png"] }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: {{ h_ratio * 249 }}px;
+    width: 100%;
+  } 
+  
+  
+  .frame-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: url('{{ images["frame_bottom.png"] }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    height: {{ h_ratio * 203 }}px;
+    width: 100%;
+  } 
+  
+  .frame-middle {
+    position: absolute;
+    left: 0;
+    top: calc({{ h_ratio * 249 }}px - 10px);
+    background-image: url('{{ images["frame_middle.png"] }}');
+    background-repeat: repeat-Y;
+    background-size: 100% {{ h_ratio * 411 }}px;
+    background-position: bottom;
+    height: calc(100% - {{ h_ratio * 249 }}px - {{ h_ratio * 203 }}px + 15px);
+    width: 100%;
+  }
+  
+  {% if settings.printerWidth > 500 %}
+  
+  .attr-pill {
+    width: 95px;
+    height: 95px;
+  }
+
+  .attr-pill .mod-pill {
+    left: 45px;
+    top: -15px;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .attr-pill .title {
+    font-size: 24px;
+  }
+
+  .side-icon {
+    font-size: 120px;
+  }
+
+  .side-icon-text {
+    font-size: 20px; 
+  }
+  
+  {% else %}
+  
+  .f1 { font-size: 2.25rem; }
+  .f2 { font-size: 1.5rem; }
+  .f3 { font-size: 1.25rem; }
+  .f4 { font-size: 1rem; }
+  .f5 { font-size: .875rem; }
+  
+  .attr-pill {
+  	width: 65px;
+    height: 65px;
+  }
+  
+  .attr-pill .mod-pill {
+    left: 35px;
+    top: -15px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .side-icon {
+  	font-size: 90px;
+  }
+  
+  .side-icon-text {
+    font-size: 20px; 
+  }
+  
+  {% endif %}
+</style>
+
+
+{% macro mod(val) %}
+  {% set x = (val - 10) // 2 %}
+  {% if x >= 0 %}+{% endif %}{{x}}
+{% endmacro %}
+
+{% macro attr_circle(name, val) %}
+  <div class="attr-pill acme br-pill bw2 ba relative flex justify-center items-center">
+    <div class="absolute w-100 flex justify-center title" style="bottom: -7px;">
+      <div class="b bg-basic br-pill" style="padding: 0 5px 0 5px;">{{name}}</div>
+    </div>
+    
+    <div class="absolute bg-basic br-100 ba bw2 b flex justify-center items-center mod-pill">
+      {{mod(val)}}
+    </div>
+    
+    <span class="f3 b">{{val}}</span>
+  </div>
+{% endmacro %}
+
+<div class="relative pa4">
+	<div class="frame-top"></div>
+	<div class="frame-bottom"></div>
+	<div class="frame-middle"></div>
+  
+  
+  <div class="f4 tc mb2">
+    [ {{it.size}} {{it.type}} {% if it.subtype %}({{it.subtype}}){% endif %} ]
+  </div>
+
+  <div class="f2 b tc pm mb2">
+    {{ it.name }}
+  </div>
+
+  <div class="flex justify-between">
+    <!--
+      Left Side
+    -->
+    <div class="{% if settings.printerWidth > 500 %}w-75{% else %}w-100{% endif %} pt3 pr3">
+      <div class="flex justify-between mb4 pt2">
+        {{ attr_circle("STR", it.strength) }}
+        {{ attr_circle("DEX", it.dexterity) }}
+        {{ attr_circle("CON", it.constitution) }}
+      </div>
+      <div class="flex justify-between">
+        {{ attr_circle("INT", it.intelligence) }}
+        {{ attr_circle("WIS", it.wisdom) }}
+        {{ attr_circle("CHA", it.charisma) }}
+      </div>
+    </div>
+    
+    {% if settings.printerWidth > 500 %}
+      <!--
+        Right Side
+      -->
+      <div class="flex-grow-1 ml3 flex flex-column items-end justify-center">
+        <div class="relative mb3 mt1">
+            <i class="ion ion-md-heart side-icon"></i>
+            <div class="absolute top-0 left-0 w-100 h-100 flex justify-center items-center basic pb2 b side-icon-text">{{it.hit_points}}</div>
+        </div>
+
+        <div class="relative">
+            <i class="ion ion-md-shirt side-icon"></i>
+            <div class="absolute top-0 left-0 w-100 h-100 flex justify-center items-center basic b side-icon-text">{{it.armor_class}}</div>
+        </div>
+      </div>
+	{% endif %}
+  </div>
+  
+  
+  {% if settings.printerWidth < 500 %}
+      <div class="flex-grow-1 flex items-start justify-between mt3">
+        <div class="relative mb3 ml4">
+            <i class="ion ion-md-heart side-icon"></i>
+            <div class="absolute top-0 left-0 w-100 h-100 flex justify-center items-center basic pb2 b side-icon-text">{{it.hit_points}}</div>
+        </div>
+
+        <div class="relative mr4">
+            <i class="ion ion-md-shirt side-icon"></i>
+            <div class="absolute top-0 left-0 w-100 h-100 flex justify-center items-center basic b side-icon-text">{{it.armor_class}}</div>
+        </div>
+      </div>
+  {% endif %}
+  
+  <div class="acme mt2">
+    <div class="pm f1 pb2">Speed</div>
+    {% for k, v in it.speed %}
+        {% if v !== 0 and v !== false and v !== '' %}
+		<div class="f3 flex justify-between mb1">
+          {{k}}
+            {% if v === true or v === false %}
+          		<span>{{ "Yes" if v else "No" }}</span>
+            {% elif v > 0 %}
+            	<span>{{ v }}ft</span>
+            {% else %}
+            	<div class="w-70 tr">{{v}}</div>
+			{% endif %}
+    	</div>
+    	{% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="acme mt2">
+    <div class="pm f1 pb2">Skills</div>
+    {% for k, v in it.skills %}
+        {% if v !== 0 %}
+		<div class="f3 flex justify-between mb1">
+          {{k}}
+          <span>
+            {% if v > 0 %}
+            	+{{ v }}
+          	{% else %}
+            	{{ v }}
+            {% endif %}
+          </span>
+    	</div>
+        {% endif %}
+    {% endfor %}
+  </div>
+  
+  <div class="acme mt2">
+    <div class="pm f1 pb2">Traits</div>
+    
+    <div class="f3 mb3">
+    	<div class="b">Senses</div>
+    	<div>{{ it.senses }}</div>
+    </div>
+    
+    <div class="f3 mb3">
+    	<div class="b">Languages</div>
+    	<div>{{ it.languages }}</div>
+    </div>
+    
+    <div class="f3">
+    	<div class="b">Challenge Rating</div>
+    	<div>{{ it.challenge_rating }}</div>
+    </div>
+  </div>
+  
+  {% macro ability(val) %}
+		<div class="pm f2 mt3 mb2">{{val.name}}</div>
+		<div class="f3">{{val.desc | markdown}}</div>
+  {% endmacro %}
+  
+  {% macro ability_list(title, val) %}
+    {% if (val | length) > 0 %}
+      <div class="pm f1 mt4 bb bw2">{{title}}</div>
+      {% for item in val %}
+        {{ability(item)}}	
+      {% endfor %}
+    {% endif %}
+  {% endmacro %}
+  
+  {{ability_list("Actions", it.actions)}}
+  {{ability_list("Special Abilities", it.special_abilities)}}
+  {{ability_list("Legendary Actions", it.legendary_actions)}}
+  
+</div>

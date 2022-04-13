@@ -1,0 +1,49 @@
+[
+	{
+		"id": "ENT-135618-298562",
+		"name": "Black Dragon",
+		"data": {
+			"alignment": "Chaotic",
+			"armor_class": "2 [17]",
+			"attacks": [
+				"2 × claw (1d4 + 1)",
+				"1 × bite (2d10)",
+				"or breath"
+			],
+			"description": "*Dwell in swamps and marshes.*",
+			"features": "- **Breath weapon:**\n  - 60’ long line of acid.\n- **Language and spells:**\n  - 20%; 4 × 1st level.\n- **Sleeping:**\n  - 40%.",
+			"hit_dice": "7** (31hp)",
+			"morale": "8",
+			"movement": "90’ (30’) / 240’ (80’) flying",
+			"name": "Black Dragon",
+			"number_appearing": "1d4 (1d4)",
+			"saving_throws": "D8 W9 P10 B10 S12 (7)",
+			"thac0": "13 [+6]",
+			"treasure": "H",
+			"xp": "1,250"
+		}
+	},
+	{
+		"id": "ENT-517145-330268",
+		"name": "Lion",
+		"data": {
+			"alignment": "Neutral",
+			"armor_class": "6 [13]",
+			"attacks": [
+				"2 × claw (1d4+1)",
+				"1 × bite (1d10)"
+			],
+			"description": "*Hunt in groups called “prides”. Live in hot regions, typically in savannah or scrublands close to deserts.*",
+			"features": "- Pursuit: Always pursue prey that flees",
+			"hit_dice": "5 (22hp)",
+			"morale": "9",
+			"movement": "150’ (50’)",
+			"name": "Lion",
+			"number_appearing": "1d4(1d8)",
+			"saving_throws": "D12 W13 P14 B15 S16(3)",
+			"thac0": "15 [+4]",
+			"treasure": "U",
+			"xp": "175"
+		}
+	}
+]

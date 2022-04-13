@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+{% set h_ratio = settings.printerWidth / 975 %}
+
+<style>
+    .frame-top {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-image: url('{{ images["frame_top.png"] }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: {{ h_ratio * 249 }}px;
+        width: 100%;
+    } 
+    
+    .frame-bottom {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-image: url('{{ images["frame_bottom.png"] }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        height: {{ h_ratio * 203 }}px;
+        width: 100%;
+    } 
+    
+    .frame-middle {
+        position: absolute;
+        left: 0;
+        top: calc({{ h_ratio * 249 }}px - 10px);
+        background-image: url('{{ images["frame_middle.png"] }}');
+        background-repeat: repeat-Y;
+        background-size: 100% {{ h_ratio * 411 }}px;
+        background-position: bottom;
+        height: calc(100% - {{ h_ratio * 249 }}px - {{ h_ratio * 203 }}px + 15px);
+        width: 100%;
+    }
+</style>
+
+{% macro attr(name, val) %}
+    <div class="flex mb2">
+        <span class="f3 flex-shrink-0" style="font-weight:bold;padding-right:8px;width:50%;">{{ name }}</span>
+        <span class="f3 b mr2">:</span>
+        <span class="f3">{{ val }}</span>
+    </div>
+{% endmacro %}
+
+{% macro attr_array(name, val) %}
+    <div class="flex mb2">
+        <span class="f3 flex-shrink-0" style="font-weight:bold;padding-right:8px;width:50%;">{{ name }}</span>
+        <span class="f3 b mr2">:</span>
+        <span class="f3">
+            {% for a in val %}
+            <div>{{ a }}</div>
+            {% endfor %}
+        </span>
+    </div>
+{% endmacro %}
+
+<div class="sans-serif relative pa4"> 
+	<div class="frame-top"></div>
+	<div class="frame-bottom"></div>
+	<div class="frame-middle"></div>
+
+    <div class="f2 mb3 b">{{ it.name }}</div>
+
+    <hr>
+
+    {% if it.description %}
+        <div class="mb3 mt3 f3"> {{ it.description | markdown }} </div>
+        <hr>
+    {% endif %}
+
+    <div class="pb2">
+        {{ attr("Armour Class", it.armor_class) }}
+        {{ attr("Hit Dice", it.hit_dice) }}
+        {{ attr_array("Attacks", it.attacks) }}
+        {{ attr("THAC0", it.thac0) }}
+        {{ attr("Movement", it.movement) }}
+        {{ attr("Saving Throws", it.saving_throws) }}
+        {{ attr("Morale", it.morale) }}
+        {{ attr("Alignment", it.alignment) }}
+        {{ attr("XP", it.xp) }}
+        {{ attr("Number Appearing", it.number_appearing) }}
+        {{ attr("Treasure Type", it.treasure) }}
+    </div>
+
+    {% if it.features %}
+        <hr>
+        <div class="f3 lh-copy">{{ it.features | markdown }}</div>
+    {% endif %}
+</div>

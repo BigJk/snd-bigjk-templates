@@ -1,0 +1,19 @@
+{
+	"alignment": "Neutral",
+	"armor_class": "6 [13]",
+	"attacks": [
+		"2 × claw (1d4+1)",
+		"1 × bite (1d10)"
+	],
+	"description": "Hunt in groups called “prides”. Live in hot regions, typically in savannah or scrublands close to deserts.",
+	"features": "- Pursuit: Always pursue prey that flees",
+	"hit_dice": "5 (22hp)",
+	"morale": "9",
+	"movement": "150’ (50’)",
+	"name": "Lion",
+	"number_appearing": "1d4(1d8)",
+	"saving_throws": "D12 W13 P14 B15 S16(3)",
+	"thac0": "15 [+4]",
+	"treasure": "U",
+	"xp": "175"
+}

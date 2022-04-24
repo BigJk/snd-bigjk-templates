@@ -18,7 +18,7 @@ My Templates for Sales &amp; Dungeons
 # BFRPG Monsters
 
 - Template for Basic Fantasy Monster Stats
-- BFRPG Monster data required: 
+- BFRPG Monster data required: https://github.com/BigJk/snd-bfrpg-monster
 - Only supports 80mm printing
     - 80mm Screenshot: [Here](./BigJk_bfrpg-monsters/screenshot_80mm.png)
 

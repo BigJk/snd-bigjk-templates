@@ -15,6 +15,13 @@ My Templates for Sales &amp; Dungeons
 - Only supports 80mm printing
     - 80mm Screenshot: [Here](./BigJk_ose-monsters/screenshot_80mm.png)
 
+# BFRPG Monsters
+
+- Template for Basic Fantasy Monster Stats
+- BFRPG Monster data required: 
+- Only supports 80mm printing
+    - 80mm Screenshot: [Here](./BigJk_bfrpg-monsters/screenshot_80mm.png)
+
 # Map & Text
 
 - Template for displaying a Map with a Text underneath

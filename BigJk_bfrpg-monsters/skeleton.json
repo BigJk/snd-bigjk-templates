@@ -1,0 +1,14 @@
+{
+	"armor_class": "17",
+	"damage": "2d6",
+	"description": "Giant ants are among the hardiest and most adaptable vermin. Soldiers and workers are about 5 to 6 feet long, while queens can grow to a length of 9 feet. Giant ants may be red or black; there is no statistical difference between them. Though relatively shy when first encountered, once combat begins they will fight to the death. They are known to collect shiny things, and so will sometimes have a small amount of treasure in their lair.\n\n Giant ants may occasionally mine shiny metals such as gold or silver; one in three (1-2 on 1d6) giant ant lairs will contain 1d100 x 1d100 gp value in relatively pure nuggets.",
+	"hit_dice": "4",
+	"morale": "7 on first sighting, 12 after engaged",
+	"movement": "60' (10')",
+	"name": "Ant, Giant",
+	"no_appearing": "2d6, Wild 2d6, Lair 4d6",
+	"no_of_attacks": "1 bite",
+	"save_as": "Fighter: 4",
+	"treasure_type": "U or special",
+	"xp": "240"
+}

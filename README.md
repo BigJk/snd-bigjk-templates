@@ -29,3 +29,16 @@ My Templates for Sales &amp; Dungeons
 - Supports 58mm and 80mm printing
     - 58mm Screenshot: [Here](./BigJk_map-text/screenshot_58mm.png)
     - 80mm Screenshot: [Here](./BigJk_map-text/screenshot_80mm.png)
+    
+# GEN: DCC Level 0 Character
+
+- Quickly generate Dungeon Crawl Classics level 0 characters for your funnels
+- Might still contain some bugs or inaccuracies
+
+# GEN: Dungeon Generator
+
+- Quickly generate dungeons for your fantasy campaigns
+
+# GEN: OSE Quick Equipment
+
+- OSE Quick Equipment generator based on Carcass Crawler Issue 2

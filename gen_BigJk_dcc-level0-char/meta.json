@@ -1,0 +1,11 @@
+{
+	"name": "DCC Level-0 Character",
+	"slug": "dcc-level0-char",
+	"author": "BigJk",
+	"description": "",
+	"passEntriesToJS": false,
+	"config": [],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

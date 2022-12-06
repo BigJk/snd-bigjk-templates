@@ -1,0 +1,68 @@
+{
+	"name": "Dungeon Generator",
+	"slug": "dungeon-generator",
+	"author": "BigJk",
+	"description": "This randomly generates a dungeon with some basic description. How you use the door and loot descriptions is up to you. The descriptions are based on the \"AX1: Old School Adventure Accessories - D30 DM Companion\" by Richard J. LeBlanc, Jr.",
+	"passEntriesToJS": false,
+	"config": [
+		{
+			"key": "dig_percent",
+			"name": "Dig Percentage",
+			"description": "Value from 0 to 100 how much of the dungeon should be filled.",
+			"type": "Number",
+			"default": 20
+		},
+		{
+			"key": "width",
+			"name": "Width",
+			"description": "Width of the dungeon.",
+			"type": "Number",
+			"default": 40
+		},
+		{
+			"key": "height",
+			"name": "Height",
+			"description": "Height of the dungeon.",
+			"type": "Number",
+			"default": 40
+		},
+		{
+			"key": "type",
+			"name": "Algorithm Type",
+			"description": "Which algorithm to use for generation.",
+			"type": "Options",
+			"default": {
+				"choices": [
+					"Uniform",
+					"Digger",
+					"Rogue"
+				],
+				"selected": "Uniform"
+			}
+		},
+		{
+			"key": "doors",
+			"name": "Add Doors",
+			"description": "Add description of doors and if they are locked.",
+			"type": "Checkbox",
+			"default": true
+		},
+		{
+			"key": "container",
+			"name": "Add Loot Container",
+			"description": "Adds some loot containers.",
+			"type": "Checkbox",
+			"default": true
+		},
+		{
+			"key": "container_chance",
+			"name": "Loot Container Chance",
+			"description": "Percentage (0 - 100%) chance of a loot container present in a room.",
+			"type": "Number",
+			"default": 10
+		}
+	],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

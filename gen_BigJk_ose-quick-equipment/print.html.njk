@@ -1,0 +1,218 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+<script>
+  let armour = [ 'Leather', 'Leather + shield', 'Chainmail', 'Chainmail + shield', 'Plate mail', 'Plate mail + shield' ];
+  
+  let bardArmour = [ 'Leather', 'Leather', 'Chainmail', 'Chainmail', 'Plate mail', 'Plate mail' ];
+
+  let advGear = ['Crowbar', 'Hammer (small) + 12 iron spikes', 'Holy water', 'Lantern + 3 flasks of oil', 'Mirror (hand-sized, steel)', 'Pole (10f\' long, wooden)', 'Rope (50\')', 'Rope (50\') + grappling hook', 'Sack (large)', 'Sack (small)', 'Stakes (3) + mallet', 'Wolfsbane (1 bunch)'];
+  
+  let weapons = ['Battle axe', 'Crossbow + 20 bolts', 'Hand axe', 'Mace', 'Pole arm', 'Short bow + 20 arrows', 'Short sword', 'Silver dagger', 'Sling + 20 stones', 'Spear', 'Sword', 'War hammer'];
+  
+  let acrobatWeapons = ['Pole arm', 'Short bow + 20 arrows', 'Spear', 'Staff'];
+  
+  let bardWeapons = ['Crossbow + 20 bolts', 'Short sword', 'Sling + 20 stones', 'Sword'];
+  
+  let clericWeapons = ['Mace', 'Sling + 20 stones', 'Staff', 'War hammer'];
+  
+  let druidWeapons = ['Club', 'Dagger', 'Sling + 20 stones', 'Staff'];
+  
+  let knightWeapons = ['Lance', 'Short sword', 'Sword', 'War hammer'];
+  
+  let getBase = () => {
+    return [
+      dice.roll('3d6').total + 'gp',
+      'Backpack', 
+      'Tinder box',
+      dice.roll('1d6').total + ' torches',
+      'Waterskin', dice.roll('1d6').total + ' iron rations',
+      advGear[dice.roll('1d12').total - 1],
+      advGear[dice.roll('1d12').total - 1]
+    ] 
+  }
+  
+  let classes = {
+  	Acrobat: () => {
+     	return {
+          armour: 'Leather',
+          weapons: [ acrobatWeapons[dice.roll('1d4').total - 1], acrobatWeapons[dice.roll('1d4').total - 1] ],
+          gear: getBase()
+        } 
+    },
+  	Assassin: () => {
+     	return {
+          armour: 'Leather',
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: getBase()
+        } 
+    },
+  	Barbarian: () => {
+     	return {
+          armour: armour[dice.roll('1d4').total - 1],
+          weapons: [ acrobatWeapons[dice.roll('1d4').total - 1], acrobatWeapons[dice.roll('1d4').total - 1] ],
+          gear: getBase()
+        } 
+    },
+  	Bard: () => {
+     	return {
+          armour: bardArmour[dice.roll('1d4').total - 1],
+          weapons: [ bardWeapons[dice.roll('1d4').total - 1], bardWeapons[dice.roll('1d4').total - 1] ],
+          gear: getBase()
+        } 
+    },
+  	Cleric: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ clericWeapons[dice.roll('1d4').total - 1], clericWeapons[dice.roll('1d4').total - 1] ],
+          gear: [ ...getBase(), 'Holy Symbol' ]
+        } 
+    },
+  	Drow: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase(), 'Holy Symbol' ]
+        } 
+    },
+  	Druid: () => {
+     	return {
+          armour: 'Leather',
+          weapons: [ druidWeapons[dice.roll('1d4').total - 1], druidWeapons[dice.roll('1d4').total - 1] ],
+          gear: [ ...getBase(), 'Sprig of mistletoe' ]
+        } 
+    },
+  	Duergar: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Dwarf: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Elf: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Fighter: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Gnome: () => {
+     	return {
+          armour: 'Leather',
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Halfling: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	'Half-elf': () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	'Half-orc': () => {
+     	return {
+          armour: armour[dice.roll('1d4').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Illusionist: () => {
+     	return {
+          armour: 'None',
+          weapons: [ 'Dagger' ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	'Magic-user': () => {
+     	return {
+          armour: 'None',
+          weapons: [ 'Dagger' ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Knight: () => {
+     	return {
+          armour: armour[dice.roll('1d4+2').total - 1],
+          weapons: [ knightWeapons[dice.roll('1d4').total - 1], knightWeapons[dice.roll('1d4').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Paladin: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase(), 'Holy Symbol' ]
+        } 
+    },
+  	Ranger: () => {
+     	return {
+          armour: armour[dice.roll('1d4').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Svirfneblin: () => {
+     	return {
+          armour: armour[dice.roll('1d6').total - 1],
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase() ]
+        } 
+    },
+  	Thief: () => {
+     	return {
+          armour: 'Leather',
+          weapons: [ weapons[dice.roll('1d12').total - 1], weapons[dice.roll('1d12').total - 1] ],
+          gear: [ ...getBase(), 'Thieves\' Tools' ]
+        } 
+    },
+  }
+
+  let equip = classes['{{ config.class.selected }}']();
+</script>
+
+<div class="sans-serif">
+  
+  <div class="f2 b pb3 mb3 bb bw3">Equipment for {{ config.class.selected }}</div>
+  
+  <div class="f3 b">Adventure Gear</div>
+  <script>
+    document.write('<div class="f3 dib">' + equip.gear.join(', ') + '</div>')
+  </script>
+
+  <div class="flex">
+    <div class="mr4">
+      <div class="f3 b mt3">Armour</div>
+      <script>
+        document.write('<div class="f3 dib">' + equip.armour + '</div>')
+      </script>
+    </div>
+
+    <div>
+      <div class="f3 b mt3">Weapons</div>
+      <script>
+        document.write('<div class="f3 dib">' + equip.weapons.join(', ') + '</div>')
+      </script>
+    </div>
+  </div>
+</div>

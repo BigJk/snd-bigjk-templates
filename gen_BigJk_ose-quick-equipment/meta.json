@@ -1,0 +1,45 @@
+{
+	"name": "OSE Quick Equipment",
+	"slug": "ose-quick-equipment",
+	"author": "BigJk",
+	"description": "Quick Equipment generator as per Carcass Crawler Issue 2.",
+	"passEntriesToJS": false,
+	"config": [
+		{
+			"key": "class",
+			"name": "Class",
+			"description": "Class to generate equipment for.",
+			"type": "Options",
+			"default": {
+				"choices": [
+					"Acrobat",
+					"Assassin",
+					"Barbarian",
+					"Bard",
+					"Cleric",
+					"Drow",
+					"Druid",
+					"Duergar",
+					"Dwarf",
+					"Elf",
+					"Fighter",
+					"Gnome",
+					"Halfling",
+					"Half-elf",
+					"Half-orc",
+					"Illusionist",
+					"Knight",
+					"Magic-user",
+					"Paladin",
+					"Ranger",
+					"Svirfneblin",
+					"Thief"
+				],
+				"selected": "Acrobat"
+			}
+		}
+	],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

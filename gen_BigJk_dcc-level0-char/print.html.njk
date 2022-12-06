@@ -1,0 +1,279 @@
+<script>
+
+	let occupationsRegex = /(\d+-?\d{0,3}) ([A-Z][A-Za-z’\-\/ ()’]+) ([A-Z][A-Za-z ()’]+) ([A-Z0-7].+)/;
+    let occupations = [];
+  
+`01 Alchemist Staff Oil, 1 flask
+02 Animal trainer Club Pony
+03 Armorer Hammer (as club) Iron helmet
+04 Astrologer Dagger Spyglass
+05 Barber Razor (as dagger) Scissors
+06 Beadle Staff Holy symbol
+07 Beekeeper Staff Jar of honey
+08 Blacksmith Hammer (as club) Steel tongs
+09 Butcher Cleaver (as axe) Side of beef
+10 Caravan guard Short sword Linen, 1 yard
+11 Cheesemaker Cudgel (as staff) Stinky cheese
+12 Cobbler Awl (as dagger) Shoehorn
+13 Confidence artist Dagger Quality cloak
+14 Cooper Crowbar (as club) Barrel
+15 Costermonger Knife (as dagger) Fruit
+16 Cutpurse Dagger Small chest
+17 Ditch digger Shovel (as staff) Fine dirt, 1 lb.
+18 Dock worker Pole (as staff) 1 late RPG book
+19 Dwarven apothecarist Cudgel (as staff) Steel vial
+20 Dwarven blacksmith Hammer (as club) Mithril, 1 oz.
+21 Dwarven chest-maker Chisel (as dagger) Wood, 10 lbs.
+22 Dwarven herder Staff Sow
+23-24 Dwarven miner Pick (as club) Lantern
+25 Dwarven mushroom-farmer Shovel (as staff) Sack
+26 Dwarven rat-catcher Club Net
+27-28 Dwarven stonemason Hammer Fine stone, 10 lbs.
+29 Elven artisan Staff Clay, 1 lb.
+30 Elven barrister Quill (as dart) Book
+31 Elven chandler Scissors (as dagger) Candles, 20
+32 Elven falconer Dagger Falcon
+33-34 Elven forester Staff Herbs, 1 lb.
+35 Elven glassblower Hammer (as club) Glass beads
+36 Elven navigator Shortbow Spyglass
+37-38 Elven sage Dagger Parchment and quill pen
+39-47 Farmer Pitchfork (as spear) Hen
+48 Fortune-teller Dagger Tarot deck
+49 Gambler Club Dice
+50 Gongfarmer Trowel (as dagger) Sack of night soil
+51-52 Grave digger Shovel (as staff) Trowel
+53-54 Guild beggar Sling Crutches
+55 Halfling chicken butcher Hand axe Chicken meat, 5 lbs.
+56-57 Halfling dyer Staff Fabric, 3 yards
+58 Halfling glovemaker Awl (as dagger) Gloves, 4 pairs
+59 Halfling gypsy Sling Hex doll
+60 Halfling haberdasher Scissors (as dagger) Fine suits, 3 sets
+61 Halfling mariner Knife (as dagger) Sailcloth, 2 yards
+62 Halfling moneylender Short sword 5 gp, 10 sp, 200 cp
+63 Halfling trader Short sword 20 sp
+64 Halfling vagrant Club Begging bowl
+65 Healer Club Holy water, 1 vial
+66 Herbalist Club Herbs, 1 lb.
+67 Herder Staff Herding dog
+68-69 Hunter Shortbow Deer pelt
+70 Indentured servant Staff Locket
+71 Jester Dart Silk clothes
+72 Jeweler Dagger Gem worth 20 gp
+73 Locksmith Dagger Fine tools
+74 Mendicant Club Cheese dip
+75 Mercenary Longsword Hide armor
+76 Merchant Dagger 4 gp, 14 sp, 27 cp
+77 Miller/baker Club Flour, 1 lb.
+78 Minstrel Dagger Ukulele
+79 Noble Longsword Gold ring worth 10 gp
+80 Orphan Club Rag doll
+81 Ostler Staff Bridle
+82 Outlaw Short sword Leather armor
+83 Rope maker Knife (as dagger) Rope, 100’
+84 Scribe Dart Parchment, 10 sheets
+85 Shaman Feathered bone club Com badge
+86 Slave Club Strange-looking rock
+87 Smuggler Sling Waterproof sack
+88 Soldier Spear Shield
+89-90 Squire Longsword Steel helmet
+91 Tax collector Longsword 100 cp
+92-93 Trapper Sling Badger pelt
+94 Urchin Stick (as club) Begging bowl
+95 Wainwright Club Pushcart
+96 Weaver Dagger Fine suit of clothes
+97 Wizard’s apprentice Dagger Black grimoire
+98-100 Woodcutter Handaxe Bundle of wood`
+    .split('\n')
+    .map(l => l.match(occupationsRegex))
+    .forEach(l => {
+  		let howMany = 1;
+ 		if (l[1].indexOf('-') >= 0) {
+        	let split = l[1].split('-');
+          	howMany = parseInt(split[1]) - parseInt(split[0]) + 1;
+        }
+  
+  		for (let i = 0; i < howMany; i++) {
+         	occupations.push({
+				type: l[2],
+                weapon: l[3],
+                goods: l[4]
+			})
+        }
+	});
+
+let missileWeapons = { "Dart": true, "Sling": true }
+let farmerTypes = "potato,wheat,turnip,corn,rice,parsnip,radish,rutabaga".split(',')
+let cartContent = "tomatoes,nothing,straw,your dead ...,dirt,rocks".split(',')
+
+let lucky = `Harsh winter: All attack rolls
+The bull: Melee attack rolls
+Fortunate date: Missile fire attack rolls
+Raised by wolves: Unarmed attack rolls
+Conceived on horseback: Mounted attack rolls
+Born on the battlefield: Damage rolls
+Path of the bear: Melee damage rolls
+Hawkeye: Missile fire damage rolls
+Pack hunter: Attack and damage rolls for 0-level starting weapon
+Born under the loom: Skill checks (including thief skills)
+Fox’s cunning: Find/disable traps
+Four-leafed clover: Find secret doors
+Seventh son: Spell checks
+The raging storm: Spell damage
+Righteous heart: Turn unholy checks
+Survived the plague: Magical healing
+Lucky sign: Saving throws
+Guardian angel: Savings throws to escape traps
+Survived a spider bite: Saving throws against poison
+Struck by lightning: Reflex saving throws
+Lived through famine: Fortitude saving throws
+Resisted temptation: Willpower saving throws
+Charmed house: Armor Class
+Speed of the cobra: Initiative
+Bountiful harvest: Hit points (applies at each level)
+Warrior’s arm: Critical hit tables
+Unholy house: Corruption rolls
+The Broken Star: Fumbles
+Birdsong: Number of languages
+Wild child: Speed (each +1/-1 = +5’/-5’ speed)`.split('\n')
+
+function mod(val) {
+	switch (val) {
+      case 3:
+        return '-3';
+      case 4:
+      case 5:
+        return '-2';
+      case 6:
+      case 7:
+      case 8:
+        return '-1';
+      case 13:
+      case 14:
+      case 15:
+        return '+1';
+      case 16:
+      case 17:
+        return '+2';
+      case 18:
+        return '+3';
+    }
+  	return '0';
+}
+
+let stats = {
+	Strength: dice.roll("3d6").total,
+	Agility: dice.roll("3d6").total,
+	Stamina: dice.roll("3d6").total,
+	Intelligence: dice.roll("3d6").total,
+	Personality: dice.roll("3d6").total,
+	Lucky: dice.roll("3d6").total,
+}
+
+let char = {
+    hp: dice.roll("1d4").total + parseInt(mod(stats.Strength)),
+  	copper: dice.roll("5d12").total,
+    occupation: occupations[dice.roll("1d100").total - 1],
+    lucky: lucky[dice.roll("1d30").total - 1],
+    acBonus: 0
+}
+
+let armor = ['helmet', 'armor', 'shield'];
+armor.forEach(a => {
+	if (char.occupation.goods.indexOf(a) >= 0) { char.acBonus = 1; }
+});
+
+if (char.occupation.goods === 'Pushcart') {
+	char.occupation.goods += " (" + cartContent[dice.roll("1d6").total] + ")"
+}
+
+if (char.occupation.type === 'Farmer') {
+	char.occupation.type += " (" + farmerTypes[dice.roll("1d8").total] + ")"
+}
+</script>
+
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+<div class="sans-serif">
+
+  <div class="flex mb4">
+    <div class="f2">Name:</div> <div class="flex-grow-1 bb bw2" style="height: 50px;"> </div>
+  </div>
+  
+  <div class="tc f2 mb3 b">
+    [ <script>document.write(char.occupation.type)</script> ]
+  </div>
+  
+  <div class="tc f3 mb4 lh-copy">
+    <div class="b">Lucky Sign:</div>
+    <script>document.write(char.lucky)</script>
+  </div>
+  
+    <div class="flex justify-center tc f3 mb3 pb3 bb bw2">
+      <div class="flex mh3">
+      	<div class="b i mr2">Law:</div>
+        <div class="w2 h2 ba bw2 pa2"></div>
+      </div>
+      <div class="flex mh3">
+      	<div class="b i mr2">Neutral:</div>
+        <div class="w2 h2 ba bw2 pa2"></div>
+      </div>
+      <div class="flex mh3">
+      	<div class="b i mr2">Chaos:</div>
+        <div class="w2 h2 ba bw2 pa2"></div>
+      </div>
+  </div>
+  
+  <div class="flex justify-center tc f3 mb3 pb3 bb bw2">
+      <div class="ba bw2 pa2 w4 br4 mh3">
+      	<div class="b i mb2">HP</div>
+      	<div class="f2"><script>document.write(char.hp)</script></div>
+       </div>
+      <div class="ba bw2 pa2 w4 br4 mh3">
+      	<div class="b i mb2">AC</div>
+      	<div class="f2"><script>document.write(10 + parseInt(mod(stats.Agility)) + char.acBonus)</script></div>
+       </div>
+      <div class="ba bw2 pa2 w4 br4 mh3">
+      	<div class="b i mb2">Speed</div>
+      	<div class="f2">30</div>
+       </div>
+      <div class="ba bw2 pa2 w4 br4 mh3">
+      	<div class="b i mb2">Init</div>
+      	<div class="f2"><script>document.write(mod(stats.Agility))</script></div>
+       </div>
+  </div>
+
+  <div class="flex flex-wrap justify-between tc f3">
+    <script>
+      Object.keys(stats).forEach(key => {
+          let val = stats[key];
+
+          document.write('<div class="ba bw2 pa2 w-33 mb1"><div class="b i mb2">' + key + '</div><div class="f2">' + val + '<span class="f3"> (' + mod(val) + ')</span></div></div>')
+      })
+    </script>
+  </div>
+  
+  <div class="flex justify-between tc f3 mt3 pt3 bt bw2">
+    <div class="ba bw2 pa2 w-33 mb3">
+      <div class="b i mb2">Reflex</div>
+      <div class="f2"><script>document.write(mod(stats.Agility))</script></div>
+    </div>
+    
+    <div class="ba bw2 pa2 w-33 mb3">
+      <div class="b i mb2">Fortitude</div>
+      <div class="f2"><script>document.write(mod(stats.Stamina))</script></div>
+    </div>
+    
+    <div class="ba bw2 pa2 w-33 mb3">
+      <div class="b i mb2">Will</div>
+      <div class="f2"><script>document.write(mod(stats.Intelligence))</script></div>
+    </div>
+  </div>
+  
+  <div class="f3 lh-copy">
+    <div class="f2 mb2">Equipment</div>
+    <div>- <script>document.write(char.occupation.weapon)</script></div>
+    <div>- <script>document.write(char.occupation.goods)</script></div>
+    <div>- <script>document.write(char.copper)</script> copper</div>
+  </div>
+  
+</div>

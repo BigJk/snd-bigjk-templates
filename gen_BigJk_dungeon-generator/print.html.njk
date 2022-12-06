@@ -1,0 +1,420 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rot.js/0.6.0/rot.min.js" integrity="sha512-z3BWI/TnIncVFupbPgk+X0bOb2uZ53tiNEajhvFVn44XJV6DDGPLDWbdElmnBf+QUfTGinDU7GITMKa/xtxpJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+<style>
+    .clearing {
+        clear: both;
+    }
+</style>
+
+<script>
+
+    let names = `Burrows of the Crying Occult
+Cells of the Scarlet Marsh
+Maze of the Phantom Dragon
+Haunt of the Betrayed Swamp
+The Mesmerizing Tombs
+The Sorrow Point
+The Broken Curse Haunt
+The Twilight Vault
+The Dire Grotto
+The Bellowing Maze
+Labyrinth of the Fallen Ogre
+Cells of the Betrayed Eagle
+Lair of the Granite Arachnid
+Grotto of the Unspoken Swamp
+The Laughing Tombs
+The Misty Pits
+The Fire Mountain Haunt
+The Swamp Vault
+The Gold Mine Catacombs
+The Mesmerizing Point
+Pits of the Hopeless Paladin
+Caverns of the Cold Soldier
+Catacombs of the Cursed Phoenix
+Crypt of the Dishonored Ogre
+The Ghost Crypt
+The Dreaded Chambers
+The Grey Point
+The Thundering Delves
+The Infernal Crypt
+The Earth Labyrinth
+Haunt of the Impostor Witch
+Burrows of the Shunned Cult
+Cells of the Whispering Soldier
+Haunt of the Storm Oracle
+The Foaming Crypt
+The Eternal Chambers
+The Abysmal Pits
+The Killing Tombs
+The Black Mountain Tunnels
+The Broken Curse Labyrinth
+Delves of the Cursed Emperor
+Burrows of the Hopeless Arachnid
+Dungeon of the Mystic Emperor
+Vault of the Nameless Scorpion
+The Shimmering Cells
+The Dread Cells
+The Raging Vault
+The Flowing Labyrinth
+The Molten Pits
+The Enchanted Grotto`.split('\n')
+
+    let overallDungeonCon = [
+        [
+            'natural caverns', 'none', 0
+        ],
+        [
+            'natural caverns', 'phosphorescent fungi/lichen', 0
+        ],
+        [
+            'crude', 'none', 0
+        ],
+        [
+            'crude', 'torch holders, empty', 0
+        ],
+        [
+            'rudimentary', 'none', 0
+        ],
+        [
+            'rudimentary', 'torch holders,empty', 0
+        ],
+        [
+            'rudimentary', 'torch holders, w/ torches', 0
+        ],
+        [
+            'rudimentary', 'braziers, empty', 0
+        ],
+        [
+            'rudimentary', 'braziers, oil-filled', 0
+        ],
+        [
+            'rudimentary', 'stone channels (empty)', 0
+        ],
+        [
+            'rudimentary', 'stone channels (oil-filled)', 0
+        ],
+        [
+            'above average', 'none', 1
+        ],
+        [
+            'above average', 'torch holders,empty', 1
+        ],
+        [
+            'above average', 'torch holders, w/ torches', 1
+        ],
+        [
+            'above average', 'braziers, empty', 1
+        ],
+        [
+            'above average', 'stone channels (empty)', 1
+        ],
+        [
+            'above average', 'stone channels (oil-filled)', 1
+        ],
+        [
+            'exceptional', 'torch holders,empty', 2
+        ],
+        [
+            'exceptional', 'torch holders, w/ torches', 2
+        ],
+        [
+            'exceptional', 'torch holders, w/ magic torches', 2
+        ],
+        [
+            'exceptional', 'braziers, empty', 2
+        ],
+        [
+            'exceptional', 'braziers, oil-filled', 2
+        ],
+        [
+            'exceptional', 'stone channels, empty', 2
+        ],
+        [
+            'exceptional', 'stone channels, oil-filled', 2
+        ],
+        [
+            'premier', 'torch holders, w/ magic torches', 3
+        ],
+        [
+            'premier', 'braziers, empty', 3
+        ],
+        [
+            'premier', 'braziers, oil-filled', 3
+        ],
+        [
+            'premier', 'stone channels, oil-filled', 3
+        ],
+        [
+            'premier', 'magic lights, ceiling panels', 3
+        ],
+        [
+            'premier', 'magic lights, floating orbs', 3
+        ]
+    ]
+
+    let dungeonFeatures = `appliques, magic symbols
+appliques, runes
+appliques, palmette
+borders, arabesque
+borders, dentil
+borders, festoon
+borders, guilloché
+borders, meander
+ceilings, arched (peak)
+ceilings, arched (round)
+ceilings, barrel-vaulted
+ceilings, coffered
+ceilings, cove
+ceilings, frescos
+ceilings, painted wooden
+columns, fluted
+columns, doric
+floors, mosaics
+floors, tiled (mixed)
+floors, tiled (patterned)
+floors, tiled (uniform)
+walls, arabesque
+walls, bas-reliefs
+walls, carved moldings
+walls, corbels
+walls, frescos
+walls, marble-veneered
+walls, mosaics
+walls, plaster/impasto
+walls, pilasters`.split('\n');
+
+    let doorType = `wood, crude
+wood, crude
+wood, good
+wood, good
+wood, good
+wood, good
+wood, good
+wood, good
+wood, strong
+wood, strong
+iron, light/thin
+iron, heavy
+portcullis, wood (standard)
+portcullis, wood grid
+portcullis, iron (standard)
+portcullis, iron grid
+stone
+wood & iron, crude
+wood & iron, good
+wood & iron, strong
+curtain, light
+curtain, heavy (lightfast)
+false door
+magical barrier
+magical door
+one-way door
+open doorway
+secret door
+secret door
+trap door`.split('\n');
+
+    let doorObstacle = `locked, weak
+locked, average
+locked, average
+locked, average
+locked, strong
+stuck, ill fit
+stuck, rusted hinges
+locked & trapped (weak)
+locked & trapped (average)
+locked & trapped (strong)
+locked, weak
+locked, average
+locked, average
+locked, average
+locked, strong
+barred, crude wood
+barred, good wood
+barred, strong wood
+barred, iron
+locked & trapped
+trapped (magical)
+blocked, cave-in (int.)
+blocked, cave-in (ext.)
+magic barrier (invisible)
+magic barrier (standard)
+magic field (1d4)
+magic field (1d6)
+magic field (2d4)
+trapped, mechanical
+trapped, magical`.split('\n');
+  
+  	let lootType = `bag(s)
+box(es)/crate(s)
+cabinet(s)
+chest(s), huge
+chest(s), large
+chest(s), small
+coffer(s)
+jar(s)
+trunk(s)
+urn(s)/jar(s)`.split('\n');
+  
+    let lootTypeMaterial = `burlap-standard fabric-velvet
+stone-wood-metal
+wood-wood w/metal-metal
+wood-wood w/metal-metal
+wood-wood w/metal-metal
+wood-wood w/metal-metal
+wood-wood w/metal-metal
+stone-clay-ceramic
+wood-wood w/metal-metal
+ceramic-clay-metal`.split('\n').map(m => m.split('-'));
+</script>
+
+<div class="sans-serif">
+
+    <div class="f2 b mb3 bb bw3 pb2">
+        <script>
+            document.write(names[Math.floor(random() * names.length)])
+        </script>
+        <div class="f4 fw5">( #{{ config.seed }} )</div>
+    </div>
+
+    <div class="relative" id="map">
+        <div class="absolute w-100 h-100 ba bw2"></div>
+    </div>
+
+    <script>
+        // Sizes
+        let w = {{ config.width }};
+        let h = {{ config.height }};
+        var perTile = {{ settings.printerWidth }}/ w;
+ 
+        // Get Map div
+        let mapElement = document.getElementById('map');
+    
+        // Create map grid
+        for (let y = 0; y < h; y++) {
+            for (let x = 0; x < w; x++) {
+                mapElement.insertAdjacentHTML('beforeend',
+                    "<div id='" + x + "-" + y +
+                    "' style='float: left; font-weight: bold; display: inline-block; border: 1px solid white; line-height: " + perTile + "px; color: white; text-align: center; width: " + perTile + "px; " + "height: " + perTile + "px; background-color: black;'></div > ");
+
+            }
+            mapElement.insertAdjacentHTML('beforeend', '<div class="clearing">')
+        }
+
+        // Generate Map
+        ROT.RNG.setSeed(Math.abs(random.int32()));
+        var map = new ROT
+            .Map
+            .{{config.type.selected}}(w, h, {
+                dugPercentage: ({{ config.dig_percent }} + 1) / 100.0,
+                roomDugPercentage: ({{ config.dig_percent }} + 1) / 100.0
+            });
+            map.create((x, y, m) => {
+                document
+                    .getElementById(x + '-' + y)
+                    .style
+                    .background = m === 0
+                        ? 'black'
+                        : 'white';
+            })
+
+        // Put Room Numbers & Gen Doors
+      
+      	let rooms = new Array(map.getRooms().length).fill(undefined).map(() => {return { doors: [], look: '' }});
+      
+        map
+            .getRooms()
+            .forEach((r, i) => {
+                mapElement.insertAdjacentHTML('beforeend', "<div style='text-align: center; text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black; font-weight: 800; font-size: 25px; position: absolute; color: white; left: " + (
+                r.getLeft()) * perTile + "px; top: " + (
+                r.getTop()) * perTile + "px; width: " + (
+                (r.getRight() - r.getLeft()) + 1) * perTile + "px; height: " + (
+                (r.getBottom() - r.getTop()) + 1) * perTile + "px; line-height:" + (
+                (r.getBottom() - r.getTop()) + 1) * perTile + "px'>" + (
+                i + 1) + "</div>");
+          
+          		r.getDoors((x, y) => {
+                  	document.getElementById(x + '-' + y).innerText = "#";
+                    
+                    let obstacle = random() <= 0.5;
+                  
+          			rooms[i].doors.push(doorType[dice.roll('1d30').total - 1] + (obstacle ? ' (' + doorObstacle[dice.roll('1d30').total - 1] + ')' : ''))
+                });
+            });
+
+        // Generate Features
+        let entrance = Math.floor(random() * map.getRooms().length);
+        let nextLevel = Math.floor(random() * map.getRooms().length);
+
+      	// Reroll next-Llevel if same to entrance
+      	if (entrance === nextLevel) nextLevel = Math.floor(random() * map.getRooms().length);
+      
+        let look = overallDungeonCon[dice.roll('1d30').total - 1];
+        let features = new Array(look[2]).fill(undefined).map(() => {
+            return '<b>' + dungeonFeatures[dice.roll('1d30').total - 1] + '</b>';
+        });
+      
+      
+    </script>
+
+    <div class="f3 mt3 lh-copy">
+
+      <div class="f2 b">Description</div>
+      
+        Dungeon looks <b><script>document.write(look[0])</script></b> with <b><script>document.write(look[1])</script></b> lighting provisions.
+        <script>
+            if (features.length > 0) {
+                document.write('It has the following additional features: ' + features.join(' and '))
+            }
+        </script>
+      
+        <div class="f2 b mt3">Entrances</div>
+      
+        — The Entrance to this Dungeon is in <b>Room #<script>document.write(entrance + 1)</script></b> <br>
+        — The Stairs to the next Level is in <b>Room #<script>document.write(nextLevel + 1)</script></b> 
+      
+      {% if config.doors or config.container %}
+      
+        <div class="f2 b mt3">Rooms</div>
+      
+      	<script>
+      		rooms.forEach((r, i) => {
+                let showDoors = false;
+                let hasLoot = false;
+              
+              	{% if config.container %}
+                hasLoot = random() < {{config.container_chance}} / 100;
+                {% endif %}   
+                
+                {% if config.doors %}
+                showDoors = true;
+                {% endif %}
+              
+                if (!showDoors && !hasLoot) return;
+                
+             	document.write('<div class="b mt3">Room #' + (i + 1) + (i === entrance ? ': (Entrance)' : '') + (i === nextLevel ? ': (Next Level)' : '') + '</div>');
+              
+                {% if config.doors %}
+              	r.doors.forEach((d, i) => {
+                	document.write('<div class="pl3"> D' + (i+1) + ': ' + d + '</div>')
+                })
+                {% endif %}
+                
+              	{% if config.container %}
+                if (hasLoot) {
+                    let i = dice.roll('1d10').total - 1;
+                    let mat = lootTypeMaterial[i][dice.roll('1d3').total - 1];   
+                 
+                	document.write('<div class="pl3"> Loot: [' + lootType[i] + '] made of ' + mat + '</div>')
+                }
+                {% endif %}
+            })
+      		
+      	</script>
+    
+    </div>
+
+	{% endif %}
+
+</div>

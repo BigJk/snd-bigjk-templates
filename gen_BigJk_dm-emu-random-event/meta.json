@@ -1,0 +1,26 @@
+{
+	"name": "DM EMU Random Event",
+	"slug": "dm-emu-random-event",
+	"author": "BigJk",
+	"description": "Event Generator for Mythic GM Emulator. Can be used to make at the table play faster, as you won't need to roll multiple dice for one event. Just skip events that don't make sense.",
+	"passEntriesToJS": false,
+	"config": [
+		{
+			"key": "amount",
+			"name": "Amount",
+			"description": "How many events to generate",
+			"type": "Number",
+			"default": 10
+		},
+		{
+			"key": "help",
+			"name": "Help",
+			"description": "Show help at the head.",
+			"type": "Checkbox",
+			"default": true
+		}
+	],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

@@ -1,0 +1,259 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+
+<script>
+	let types = `1-7#Remote event
+8-28#NPC action
+29-35#Introduce a new NPC
+36-45#Move toward a thread
+46-52#Move away from a thread
+53-55#Close a thread
+56-67#PC negative
+68-75#PC positive
+76-83#Ambiguous event
+84-92#NPC negative
+93-100#NPC positive`.split('\n').map((l) => {
+		let split = l.split('#');
+		let ranges = split[0].split('-');
+		let name = split[1];
+
+		return { start: parseInt(ranges[0]), stop: parseInt(ranges[1]), name: name };
+	});
+
+	function getType(num) {
+		return types.find(t => num <= t.stop);
+	}
+
+	let action = `1. Attainment
+2. Starting
+3. Neglect
+4. Fight
+5. Recruit
+6. Triumph
+7. Violate
+8. Oppose
+9. Malice
+10. Communicate
+11. Persecute
+12. Increase
+13. Decrease
+14. Abandon
+15. Gratify
+16. Inquire
+17. Antagonise
+18. Move
+19. Waste
+20. Truce
+21. Release
+22. Befriend
+23. Judge
+24. Desert
+25. Dominate
+26. Procrastinate
+27. Praise
+28. Separate
+29. Take
+30. Break
+31. Heal
+32. Delay
+33. Stop
+34. Lie
+35. Return
+36. Immitate
+37. Struggle
+38. Inform
+39. Bestow
+40. Postpone
+41. Expose
+42. Haggle
+43. Imprison
+44. Release
+45. Celebrate
+46. Develop
+47. Travel
+48. Block
+49. Harm
+50. Debase
+51. Overindulge
+52. Adjourn
+53. Adversity
+54. Kill
+55. Disrupt
+56. Usurp
+57. Create
+58. Betray
+59. Agree
+60. Abuse
+61. Oppress
+62. Inspect
+63. Ambush
+64. Spy
+65. Attach
+66. Carry
+67. Open
+68. Carelessness
+69. Ruin
+70. Extravagance
+71. Trick
+72. Arrive
+73. Propose
+74. Divide
+75. Refuse
+76. Mistrust
+77. Deceive
+78. Cruelty
+79. Intolerance
+80. Trust
+81. Excitement
+82. Activity
+83. Assist
+84. Care
+85. Negligence
+86. Passion
+87. Work hard
+88. Control
+89. Attract
+90. Failure
+91. Pursue
+92. Vengeance
+93. Proceedings
+94. Dispute
+95. Punish
+96. Guide
+97. Transform
+98. Overthrow
+99. Oppress
+100. Change`.split('\n').map(l => l.split('. ')[1]);
+
+	let subject = `1. Goals
+2. Dreams
+3. Environment
+4. Outside
+5. Inside
+6. Reality
+7. Allies
+8. Enemies
+9. Evil
+10. Good
+11. Emotions
+12. Opposition
+13. War
+14. Peace
+15. The innocent
+16. Love
+17. The spiritual
+18. The intellectual
+19. New ideas
+20. Joy
+21. Messages
+22. Energy
+23. Balance
+24. Tension
+25. Friendship
+26. The physical
+27. A project
+28. Pleasures
+29. Pain
+30. Possessions
+31. Benefits
+32. Plans
+33. Lies
+34. Expectations
+35. Legal matters
+36. Bureaucracy
+37. Business
+38. A path
+39. News
+40. Exterior factors
+41. Advice
+42. A plot
+43. Competition
+44. Prison
+45. Illness
+46. Food
+47. Attention
+48. Success
+49. Failure
+50. Travel
+51. Jealousy
+52. Dispute
+53. Home
+54. Investment
+55. Suffering
+56. Wishes
+57. Tactics
+58. Stalemate
+59. Randomness
+60. Misfortune
+61. Death
+62. Disruption
+63. Power
+64. A burden
+65. Intrigues
+66. Fears
+67. Ambush
+68. Rumor
+69. Wounds
+70. Extravagance
+71. A representative
+72. Adversities
+73. Opulence
+74. Liberty
+75. Military
+76. The mundane
+77. Trials
+78. Masses
+79. Vehicle
+80. Art
+81. Victory
+82. Dispute
+83. Riches
+84. Status quo
+85. Technology
+86. Hope
+87. Magic
+88. Illusions
+89. Portals
+90. Danger
+91. Weapons
+92. Animals
+93. Weather
+94. Elements
+95. Nature
+96. The public
+97. Leadership
+98. Fame
+99. Anger
+100. Information`.split('\n').map(l => l.split('. ')[1]);
+</script>
+
+<div class="lh-copy">
+	<div class="f1 tc b bb bw2 pb2 mb3"> Events </div>
+
+	{% if config.help %}
+	<div class="bb bw2 pb3 mb3" style="font-size: 30px;">
+
+		<div>
+			⁠— <b>At Scene Setup:</b> Roll 1D10 against chaos to see if its <b>even</b> interrupt with a new Scene.
+		</div>
+
+		<div>
+			⁠— <b>Fate question:</b> if double number (i.e. 11, 22, etc.) and if the single digit (i.e. 1 for 11, 2 for 22, etc.) is equal to or less than the chaos.
+		</div>
+	</div>
+	{% endif %}
+
+	<script>
+		new Array( {{ config.amount }} ).fill(null).forEach(() => {
+			document.write(`<div class="f2 bb pb2 mb2 flex items-center justify-between">
+               <div class="">
+                  <div class="b">${getType(dice.roll('1d100').total).name}</div>
+                  <span>${action[dice.roll('1d100').total - 1]}</span> -
+               	  <span>${subject[dice.roll('1d100').total - 1]}</span>
+               </div> 
+               <div class="mh4">
+                   <div class="ba bw2" style="width: 50px; height: 50px;"></div>
+      		   </div>
+            </div>`);
+		})
+	</script>
+</div>

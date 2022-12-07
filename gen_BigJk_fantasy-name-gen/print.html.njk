@@ -1,0 +1,126 @@
+<!--
+	=== Script that was run on Fantay Name Gen to extract all D&D Races. ===
+
+	let races = {};
+    let racesNames = [];
+
+    document.querySelectorAll("#dndNames .gameInnerSw a").forEach(node => {
+        if (node.innerText.length <= 0) return;
+
+        racesNames.push(node.innerText);
+        races[node.innerText] = "https://www.fantasynamegenerators.com/scripts/dnd" + node.innerText.replace(/[() -]/g, '');
+    })
+
+    console.log(JSON.stringify(races, null, '\t'))
+-->
+
+
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{% data 'gens' %}
+{
+	"Aarakocra": "https://www.fantasynamegenerators.com/scripts/dndAarakocra",
+	"Aasimar": "https://www.fantasynamegenerators.com/scripts/dndAasimar",
+	"Bugbear": "https://www.fantasynamegenerators.com/scripts/dndBugbear",
+	"Centaur": "https://www.fantasynamegenerators.com/scripts/dndCentaur",
+	"Changeling": "https://www.fantasynamegenerators.com/scripts/dndChangeling",
+	"Deep Gnome": "https://www.fantasynamegenerators.com/scripts/dndDeepGnome",
+	"Deva": "https://www.fantasynamegenerators.com/scripts/dndDeva",
+	"Dragonborn": "https://www.fantasynamegenerators.com/scripts/dndDragonborn",
+	"Drow": "https://www.fantasynamegenerators.com/scripts/dndDrow",
+	"Duergar": "https://www.fantasynamegenerators.com/scripts/dndDuergar",
+	"Dwarf": "https://www.fantasynamegenerators.com/scripts/dndDwarf",
+	"Eladrin": "https://www.fantasynamegenerators.com/scripts/dndEladrin",
+	"Elf": "https://www.fantasynamegenerators.com/scripts/dndElf",
+	"Fairies": "https://www.fantasynamegenerators.com/scripts/dndFairies",
+	"Firbolg": "https://www.fantasynamegenerators.com/scripts/dndFirbolg",
+	"Genasi": "https://www.fantasynamegenerators.com/scripts/dndGenasi",
+	"Githyanki": "https://www.fantasynamegenerators.com/scripts/dndGithyanki",
+	"Githzerai": "https://www.fantasynamegenerators.com/scripts/dndGithzerai",
+	"Gnome": "https://www.fantasynamegenerators.com/scripts/dndGnome",
+	"Goblin": "https://www.fantasynamegenerators.com/scripts/dndGoblin",
+	"Goliath": "https://www.fantasynamegenerators.com/scripts/dndGoliath",
+	"Grung": "https://www.fantasynamegenerators.com/scripts/dndGrung",
+	"Half-Elf": "https://www.fantasynamegenerators.com/scripts/dndHalfElf",
+	"Half-Orc": "https://www.fantasynamegenerators.com/scripts/dndHalfOrc",
+	"Halfling": "https://www.fantasynamegenerators.com/scripts/dndHalfling",
+	"Harengon": "https://www.fantasynamegenerators.com/scripts/dndHarengon",
+	"Hobgoblin": "https://www.fantasynamegenerators.com/scripts/dndHobgoblin",
+	"Human": "https://www.fantasynamegenerators.com/scripts/dndHuman",
+	"Kalashtar": "https://www.fantasynamegenerators.com/scripts/dndKalashtar",
+	"Kenku": "https://www.fantasynamegenerators.com/scripts/dndKenku",
+	"Kobold": "https://www.fantasynamegenerators.com/scripts/dndKobold",
+	"Leonin": "https://www.fantasynamegenerators.com/scripts/dndLeonin",
+	"Lizardfolk": "https://www.fantasynamegenerators.com/scripts/dndLizardfolk",
+	"Locathah": "https://www.fantasynamegenerators.com/scripts/dndLocathah",
+	"Loxodon": "https://www.fantasynamegenerators.com/scripts/dndLoxodon",
+	"Minotaur": "https://www.fantasynamegenerators.com/scripts/dndMinotaur",
+	"Orc": "https://www.fantasynamegenerators.com/scripts/dndOrc",
+	"Satyr": "https://www.fantasynamegenerators.com/scripts/dndSatyr",
+	"Shadar-kai": "https://www.fantasynamegenerators.com/scripts/dndShadarkai",
+	"Shardmind": "https://www.fantasynamegenerators.com/scripts/dndShardmind",
+	"Shifter": "https://www.fantasynamegenerators.com/scripts/dndShifter",
+	"Simic Hybrid": "https://www.fantasynamegenerators.com/scripts/dndSimicHybrid",
+	"Tabaxi": "https://www.fantasynamegenerators.com/scripts/dndTabaxi",
+	"Tiefling": "https://www.fantasynamegenerators.com/scripts/dndTiefling",
+	"Tortle": "https://www.fantasynamegenerators.com/scripts/dndTortle",
+	"Triton": "https://www.fantasynamegenerators.com/scripts/dndTriton",
+	"Vedalken": "https://www.fantasynamegenerators.com/scripts/dndVedalken",
+	"Verdan": "https://www.fantasynamegenerators.com/scripts/dndVerdan",
+	"Warforged": "https://www.fantasynamegenerators.com/scripts/dndWarforged",
+	"Wilden": "https://www.fantasynamegenerators.com/scripts/dndWilden",
+	"Yuan-Ti": "https://www.fantasynamegenerators.com/scripts/dndYuanTi",
+	"Archdevil": "https://www.fantasynamegenerators.com/scripts/dndArchdevil",
+	"Archfey": "https://www.fantasynamegenerators.com/scripts/dndArchfey",
+	"Beholder": "https://www.fantasynamegenerators.com/scripts/dndBeholder",
+	"Bullywug": "https://www.fantasynamegenerators.com/scripts/dndBullywug",
+	"Demon lord": "https://www.fantasynamegenerators.com/scripts/dndDemonlord",
+	"Dragon (Black)": "https://www.fantasynamegenerators.com/scripts/dndDragonBlack",
+	"Dragon (Blue)": "https://www.fantasynamegenerators.com/scripts/dndDragonBlue",
+	"Dragon (Brass)": "https://www.fantasynamegenerators.com/scripts/dndDragonBrass",
+	"Dragon (Bronze)": "https://www.fantasynamegenerators.com/scripts/dndDragonBronze",
+	"Dragon (Copper)": "https://www.fantasynamegenerators.com/scripts/dndDragonCopper",
+	"Dragon (Gold)": "https://www.fantasynamegenerators.com/scripts/dndDragonGold",
+	"Dragon (Green)": "https://www.fantasynamegenerators.com/scripts/dndDragonGreen",
+	"Dragon (Platinum)": "https://www.fantasynamegenerators.com/scripts/dndDragonPlatinum",
+	"Dragon (Red)": "https://www.fantasynamegenerators.com/scripts/dndDragonRed",
+	"Dragon (Silver)": "https://www.fantasynamegenerators.com/scripts/dndDragonSilver",
+	"Dragon (White)": "https://www.fantasynamegenerators.com/scripts/dndDragonWhite",
+	"Genie": "https://www.fantasynamegenerators.com/scripts/dndGenie",
+	"Giant": "https://www.fantasynamegenerators.com/scripts/dndGiant",
+	"Gnoll": "https://www.fantasynamegenerators.com/scripts/dndGnoll",
+	"Hag": "https://www.fantasynamegenerators.com/scripts/dndHag",
+	"Mind Flayer": "https://www.fantasynamegenerators.com/scripts/dndMindFlayer",
+	"Myconid": "https://www.fantasynamegenerators.com/scripts/dndMyconid",
+	"Ogre": "https://www.fantasynamegenerators.com/scripts/dndOgre",
+	"Pixie": "https://www.fantasynamegenerators.com/scripts/dndPixie",
+	"Treant": "https://www.fantasynamegenerators.com/scripts/dndTreant",
+	"Troll": "https://www.fantasynamegenerators.com/scripts/dndTroll",
+	"Troglodyte": "https://www.fantasynamegenerators.com/scripts/dndTroglodyte"
+}
+{% enddata %}
+
+<script> function testSwear(name) { return name; } </script>
+
+<!--
+	Hacky Way of finding the right one
+-->
+<script src="{{ gens[config.race.selected] }}.js"></script>
+<script src="{{ gens[config.race.selected] }}s.js"></script>
+<script src="{{ gens[config.race.selected] }}Names.js"></script>
+
+<div class="f1 bb bw2 pb2 mb2"> {{ config.race.selected }} Names </div>
+
+<div class="f2 lh-copy" id="placeholder">
+  <!-- Fantasy Name Gen will insert names here -->
+</div>
+
+<script>
+  {% if config.female %}
+	nameGen(1);
+  {% else %}
+	nameGen(0);
+  {% endif %}
+  
+</script>

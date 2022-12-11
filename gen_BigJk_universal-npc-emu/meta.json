@@ -1,0 +1,19 @@
+{
+	"name": "Universal NPC Emulator",
+	"slug": "universal-npc-emu",
+	"author": "BigJk",
+	"description": "",
+	"passEntriesToJS": false,
+	"config": [
+		{
+			"key": "amount",
+			"name": "Amount",
+			"description": "How many NPCs to generate.",
+			"type": "Number",
+			"default": 5
+		}
+	],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

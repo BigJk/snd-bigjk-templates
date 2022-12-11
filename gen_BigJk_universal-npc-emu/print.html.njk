@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+
+<script>
+	let mod = [...`1 superfluous 21 inept 41 pleasant 61 lethargic 81 jovial
+2 addicted 22 banal 42 insensitive 62 defiant 82 shrewd
+3 conformist 23 logical 43 titled 63 obnoxious 83 liberal
+4 nefarious 24 subtle 44 inexperienced 64 insightful 84 compliant
+5 sensible 25 reputable 45 prying 65 tactless 85 destitute
+6 untrained 26 wicked 46 oblivious 66 fanatic 86 conniving
+7 romantic 27 lazy 47 refined 67 plebeian 87 careful
+8 unreasonable 28 pessimistic 48 indispensable 68 childish 88 alluring
+9 skilled 29 solemn 49 scholarly 69 pious 89 defective
+10 neglectful 30 habitual 50 conservative 70 uneducated 90 optimistic
+11 lively 31 meek 51 uncouth 71 inconsiderate 91 affluent
+12 forthright 32 helpful 52 willful 72 cultured 92 despondent
+13 idealistic 33 unconcerned 53 indifferent 73 revolting 93 mindless
+14 unsupportive 34 generous 54 fickle 74 curious 94 passionate
+15 rational 35 docile 55 elderly 75 touchy 95 devoted
+16 coarse 36 cheery 56 sinful 76 needy 96 established
+17 foolish 37 pragmatic 57 naive 77 dignified 97 unseemly
+18 cunning 38 serene 58 privileged 78 pushy 98 dependable
+19 delightful 39 thoughtful 59 glum 79 kind 99 righteous
+20 miserly 40 hopeless 60 likable 80 corrupt 100 confident`.matchAll(/\d{1,3} ([a-z ]+)/g)].map(res => res[1].trim());
+
+	let noun = [...`1 gypsy 21 missionary 41 villager 61 mediator 81 performer
+2 witch 22 outcast 42 magus 62 crook 82 magister
+3 merchant 23 mercenary 43 conscript 63 civilian 83 serf
+4 expert 24 caretaker 44 worker 64 activist 84 brute
+5 commoner 25 hermit 45 actor 65 hero 85 inquisitor
+6 judge 26 orator 46 herald 66 champion 86 lord
+7 ranger 27 chieftain 47 highwayman 67 cleric 87 villain
+8 occultist 28 pioneer 48 fortune-hunter 68 slave 88 professor
+9 reverend 29 burglar 49 governor 69 gunman 89 servant
+10 thug 30 vicar 50 scrapper 70 clairvoyant 90 charmer
+11 drifter 31 officer 51 monk 71 patriarch 91 globetrotter
+12 journeyman 32 explorer 52 homemaker 72 shopkeeper 92 sniper
+13 statesman 33 warden 53 recluse 73 crone 93 courtier
+14 astrologer 34 outlaw 54 steward 74 adventurer 94 priest
+15 duelist 35 adept 55 polymath 75 soldier 95 tradesman
+16 jack-of-all-trades 36 bum 56 magician 76 entertainer 96 hitman
+17 aristocrat 37 sorcerer 57 traveler 77 craftsman 97 wizard
+18 preacher 38 laborer 58 vagrant 78 scientist 98 beggar
+19 artisan 39 master 59 apprentice 79 ascetic 99 tradesman
+20 rogue 40 ascendant 60 politician 80 superior 100 warrior`.matchAll(/\d{1,3} ([a-z ]+)/g)].map(res => res[1].trim());
+
+	let motVerb = [...`1 advise 21 shepherd 41 take 61 work 81 manage
+2 obtain 22 abuse 42 discover 62 accompany 82 suppress
+3 attempt 23 indulge 43 deter 63 offend 83 proclaim
+4 spoil 24 chronicle 44 acquire 64 guide 84 operate
+5 oppress 25 fulfill 45 damage 65 learn 85 access
+6 interact 26 drive 46 publicize 66 persecute 86 refine
+7 create 27 review 47 burden 67 communicate 87 compose
+8 abduct 28 aid 48 advocate 68 process 88 undermine
+9 promote 29 follow 49 implement 69 report 89 explain
+10 conceive 30 advance 50 understand 70 develop 90 discourage
+11 blight 31 guard 51 collaborate 71 steal 91 attend
+12 progress 32 conquer 52 strive 72 suggest 92 detect
+13 distress 33 hinder 53 complete 73 weaken 93 execute
+14 possess 34 plunder 54 compel 74 achieve 94 maintain
+15 record 35 construct 55 join 75 secure 95 realize
+16 embrace 36 encourage 56 assist 76 inform 96 convey
+17 contact 37 agonize 57 defile 77 patronize 97 rob
+18 pursue 38 comprehend 58 produce 78 depress 98 establish
+19 associate 39 administer 59 institute 79 determine 99 overthrow
+20 prepare 40 relate 60 account 80 seek 100 support`.matchAll(/\d{1,3} ([a-z ]+)/g)].map(res => res[1].trim());
+
+	let motNoun = [...`1 wealth 21 the wealthy 41 dreams 61 gluttony 81 advice
+2 hardship 22 the populous 42 discretion 62 lust 82 propaganda
+3 affluence 23 enemies 43 love 63 envy 83 science
+4 resources 24 the public 44 freedom 64 greed 84 knowledge
+5 prosperity 25 religion 45 pain 65 laziness 85 communications
+6 poverty 26 the poor 46 faith 66 wrath 86 lies
+7 opulence 27 family 47 slavery 67 pride 87 myths
+8 deprivation 28 the elite 48 enlightenment 68 purity 88 riddles
+9 success 29 academia 49 racism 69 moderation 89 stories
+10 distress 30 the forsaken 50 sensuality 70 vigilance 90 legends
+11 contraband 31 the law 51 dissonance 71 zeal 91 industry
+12 music 32 the government 52 peace 72 composure 92 new religions
+13 literature 33 the downtrodden 53 discrimination 73 charity 93 progress
+14 technology 34 friends 54 disbelief 74 modesty 94 animals
+15 alcohol 35 criminals 55 pleasure 75 atrocities 95 ghosts
+16 medicines 36 allies 56 hate 76 cowardice 96 magic
+17 beauty 37 secret societies 57 happiness 77 narcissism 97 nature
+18 strength 38 the world 58 servitude 78 compassion 98 old religions
+19 intelligence 39 military 59 harmony 79 valor 99 expertise
+20 force 40 the church 60 justice 80 patience 100 spirits`.matchAll(/\d{1,3} ([a-z ]+)/g)].map(res => res[1].trim());
+
+	let rollOne = () => {
+		let sMod = mod[dice.roll('1d100').total - 1];
+		let sNoun = noun[dice.roll('1d100').total - 1];
+		let sMots = [];
+
+		for (let i = 0; i < 3; i++) {
+			let sMotVerb = dice.roll('1d100').total - 1;
+			let sMotNoun = dice.roll('1d100').total - 1;
+
+			if (i > 0) {
+				if (Math.ceil(sMots[i - 1].noun / 20) === Math.ceil(sMotNoun / 20)) {
+					sMotNoun = dice.roll('1d100').total - 1;
+					console.log(sMotNoun)
+				}
+			}
+
+			sMots.push({ verb: sMotVerb, noun: sMotNoun });
+		}
+
+		sMots = sMots.map(s => ({ verb: motVerb[s.verb], noun: motNoun[s.noun] }));
+
+		return {
+			mod: sMod,
+			noun: sNoun,
+			mots: sMots
+		}
+	}
+</script>
+
+<div class="sans-serif">
+	{% for item in range(0, config.amount) %}
+	<div class="ba bw2 mb4 lh-copy">
+		<div class="flex mb3 pa3 bb bw2">
+			<div class="f2 pr3">Name:</div>
+			<div class="flex-grow-1 bb bw2" style="height: 50px;"> </div>
+		</div>
+		<div class="f2 ph3 pb3">
+			<script>
+				(() => {
+					let res = rollOne();
+
+					document.write(`<div class="b">${res.mod} ${res.noun}</div>`);
+                  	res.mots.forEach(m => {
+                    	document.write(`<div>— ${m.verb} ${m.noun}</div>`);
+                    })
+				})()
+			</script>
+		</div>
+	</div>
+	{% endfor %}
+</div>

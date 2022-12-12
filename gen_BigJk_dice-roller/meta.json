@@ -1,0 +1,26 @@
+{
+	"name": "Dice Roller",
+	"slug": "dice-roller",
+	"author": "BigJk",
+	"description": "Pre-Calculate Dice-Rolls.",
+	"passEntriesToJS": false,
+	"config": [
+		{
+			"key": "dice",
+			"name": "Dice Type",
+			"description": "Dice Type in the common notation e.g. 1d6, 2d12+2, etc.",
+			"type": "Text",
+			"default": "1d6"
+		},
+		{
+			"key": "amount",
+			"name": "Amount",
+			"description": "How many dice rolls to generate.",
+			"type": "Number",
+			"default": 10
+		}
+	],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+
+<div>
+	<div class="f1 bb bw2 pb2 mb2">{{ config.dice }} Results</div>
+	<div class="f1 flex flex-wrap">
+		<script>
+			new Array( {{ config.amount }} ).fill(null).forEach(() => {
+				document.write(`<div class="ba ma2 flex justify-center items-center" style="width: 80px; height: 80px;">${dice.roll('{{ config.dice }}').total}</div>`)
+			})
+		</script>
+	</div>
+</div>

@@ -2,7 +2,7 @@
 	"name": "Fantasy Name Generator",
 	"slug": "fantasy-name-gen",
 	"author": "BigJk",
-	"description": "This will directly call Fantasy Name Generator. Seed is not working because of that!",
+	"description": "Uses the Fantasy Name Generator website to generate all kinds of names.",
 	"passEntriesToJS": false,
 	"config": [
 		{

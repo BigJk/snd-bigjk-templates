@@ -1,3 +1,8 @@
+<script>
+	Math.random = random;
+</script>
+
+<script src="https://www.fantasynamegenerators.com/scripts/dungeonNames.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rot.js/0.6.0/rot.min.js" integrity="sha512-z3BWI/TnIncVFupbPgk+X0bOb2uZ53tiNEajhvFVn44XJV6DDGPLDWbdElmnBf+QUfTGinDU7GITMKa/xtxpJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
 
@@ -7,59 +12,14 @@
     }
 </style>
 
+<div id="placeholder" style="height: 0; color: transparent;"></div>
+
 <script>
+	nameGen();
+  	names = document.querySelector('#placeholder #result').innerText.split('\n').splice(0, 10);
+</script>
 
-    let names = `Burrows of the Crying Occult
-Cells of the Scarlet Marsh
-Maze of the Phantom Dragon
-Haunt of the Betrayed Swamp
-The Mesmerizing Tombs
-The Sorrow Point
-The Broken Curse Haunt
-The Twilight Vault
-The Dire Grotto
-The Bellowing Maze
-Labyrinth of the Fallen Ogre
-Cells of the Betrayed Eagle
-Lair of the Granite Arachnid
-Grotto of the Unspoken Swamp
-The Laughing Tombs
-The Misty Pits
-The Fire Mountain Haunt
-The Swamp Vault
-The Gold Mine Catacombs
-The Mesmerizing Point
-Pits of the Hopeless Paladin
-Caverns of the Cold Soldier
-Catacombs of the Cursed Phoenix
-Crypt of the Dishonored Ogre
-The Ghost Crypt
-The Dreaded Chambers
-The Grey Point
-The Thundering Delves
-The Infernal Crypt
-The Earth Labyrinth
-Haunt of the Impostor Witch
-Burrows of the Shunned Cult
-Cells of the Whispering Soldier
-Haunt of the Storm Oracle
-The Foaming Crypt
-The Eternal Chambers
-The Abysmal Pits
-The Killing Tombs
-The Black Mountain Tunnels
-The Broken Curse Labyrinth
-Delves of the Cursed Emperor
-Burrows of the Hopeless Arachnid
-Dungeon of the Mystic Emperor
-Vault of the Nameless Scorpion
-The Shimmering Cells
-The Dread Cells
-The Raging Vault
-The Flowing Labyrinth
-The Molten Pits
-The Enchanted Grotto`.split('\n')
-
+<script>
     let overallDungeonCon = [
         [
             'natural caverns', 'none', 0

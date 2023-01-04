@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+<div class="sans-serif flex flex-column items-center justify-center relative ba bw2 br4" style="height: {{ it.height }}px; width: {{ it.width }}px">
+  <div class="f1 b mb4">{{ it.name }}</div>
+  <img src="{{ it.img }}" height="170" alt="">
+  <div class="f3 b mt4 tc lh-copy">
+    <div>{{ it.type_line }}</div>
+    {{ it.modifier }}
+  </div>
+  
+  <div class="f1 mt5 pa2 ph4 bw2 br4 ba">
+    {{ it.power }} / {{ it.toughness }}
+  </div>
+</div>

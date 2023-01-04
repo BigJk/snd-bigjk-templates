@@ -1,0 +1,10 @@
+{
+	"height": 633,
+	"img": "!IMAGE",
+	"modifier": "Flying",
+	"name": "Goblin",
+	"power": 1,
+	"toughness": 1,
+	"type_line": "Red, Token, Goblin",
+	"width": 460
+}

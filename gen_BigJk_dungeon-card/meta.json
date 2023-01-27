@@ -1,0 +1,11 @@
+{
+    "name": "Dungeon Card",
+    "slug": "dungeon-card",
+    "author": "BigJk",
+    "description": "",
+    "passEntriesToJS": false,
+    "config": [],
+    "images": {},
+    "dataSources": [],
+    "version": ""
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Dungeon Card",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "watch": "vite build --watch",
+        "preview": "vite preview"
+    },
+    "author": "BigJk",
+    "license": "MIT",
+    "devDependencies": {
+        "pathfinding": "^0.4.18",
+        "vite": "^4.0.4",
+        "vite-plugin-singlefile": "^0.13.2"
+    }
+}

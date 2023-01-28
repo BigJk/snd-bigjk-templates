@@ -4,7 +4,22 @@
     "author": "BigJk",
     "description": "",
     "passEntriesToJS": false,
-    "config": [],
+    "config": [
+        {
+            "key": "width",
+            "name": "Width",
+            "description": "Grid width.",
+            "type": "Number",
+            "default": 15
+        },
+        {
+            "key": "height",
+            "name": "Height",
+            "description": "Grid height.",
+            "type": "Number",
+            "default": 25
+        }
+    ],
     "images": {},
     "dataSources": [],
     "version": ""

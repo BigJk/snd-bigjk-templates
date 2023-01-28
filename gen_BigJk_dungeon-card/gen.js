@@ -4,8 +4,8 @@ let canvas = document.querySelector(window.dungeonGenTarget ?? "#app canvas");
 let ctx = canvas.getContext("2d");
 
 // high dpi fix
-let canvasWidth = canvas.width;
-let canvasHeight = canvas.height;
+let canvasWidth = window.config.printWidth;
+let canvasHeight = (canvasWidth / window.config.width) * window.config.height;
 
 if (window.devicePixelRatio > 1) {
     canvas.width = canvasWidth * window.devicePixelRatio;
@@ -20,8 +20,8 @@ if (window.devicePixelRatio > 1) {
 const DEBUG = false;
 
 // gen
-const GEN_WIDTH = 15;
-const GEN_HEIGHT = 25;
+const GEN_WIDTH = window.config.width;
+const GEN_HEIGHT = window.config.height;
 
 console.log(GEN_WIDTH, GEN_HEIGHT)
 

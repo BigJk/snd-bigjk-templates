@@ -1,0 +1,19 @@
+{
+	"name": "CWN Gang Generator",
+	"slug": "cwn-gang-generator",
+	"author": "BigJk",
+	"description": "Cities Without Number - Gang Generator",
+	"passEntriesToJS": false,
+	"config": [
+		{
+			"key": "name_overwrite",
+			"name": "Name Overwrite",
+			"description": "Overwrite the name of the gang",
+			"type": "Text",
+			"default": ""
+		}
+	],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

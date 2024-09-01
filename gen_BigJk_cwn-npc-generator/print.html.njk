@@ -1,0 +1,434 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+
+<style>
+    body {
+        font-family: "Oxanium", sans-serif;
+    }
+</style>
+
+<script>
+const focus = [
+  "Charm, able to persuade other NPCs and people with their winning ways",
+  "Cunning, having plans for any occasion and a backup after that",
+  "Debts, being owed favors by one or more important other people",
+  "Deception, capable of tricking and misleading others easily",
+  "Fame, being known and widely respected in their own social circles",
+  "Family, related to someone of greater importance or influence",
+  "Foresight, able to clearly predict the likely outcomes of current situations",
+  "Friendship, being good friends with someone important or powerful",
+  "Gear, possessed of high-quality cyber, weaponry, drones, or other useful equipment",
+  "Inspiration, able to goad others to pursue a shared goal as if it were their own",
+  "Luck, beyond any ordinary measure to a very noticeable degree",
+  "Money, being unusually wealthy for someone in their position",
+  "Prowess, with their physical form somehow dramatically stronger and tougher than most",
+  "Secrets, privy to blackmail information or valuable knowledge hidden from most",
+  "Skills, possessed of a rare or important skill to an unusual degree",
+  "Stealth, very difficult to locate or follow if they don’t care to be pursued",
+  "Ties, linked professionally to an organization or group that is very dangerous to offend",
+  "Violence, either being personally fearsome or having ties to those who are",
+  "Willpower, driven to obtain their aim with tireless, ferocious determination",
+  "Wisdom, able to discern a practical path to their desires even when all is murky"
+]
+
+const virtue = [
+  "Always keeps the spirit of their bargains",
+  "Avoids lying in all but dire circumstances",
+  "Cherishes an idealistic dream",
+  "Courage of unusual degree",
+  "Devoted to their family",
+  "Exceptionally kind to the weak",
+  "Extremely fastidious about their duties",
+  "Extremely trustworthy to friends",
+  "Forgiving temperament, even if unwise",
+  "Generous even when it is difficult",
+  "Has an excellent sense of humor",
+  "Hates underhanded schemes and plots",
+  "Incorrupt about their given responsibilities",
+  "Is a good, trustworthy leader to minions",
+  "Keeps calm even under intense pressure",
+  "Loyal subordinate to their chosen leader",
+  "Never backs down from a promise",
+  "Patient when taxed or annoyed",
+  "Self-sacrificing for what they believe in",
+  "Thoughtful and not given to quick anger"
+]
+
+const flaw = [
+  "Accepts bribes or considerations",
+  "Addicted to a drug or indulgence",
+  "Blames their failures on something else",
+  "Careless and sloppy with their duties",
+  "Easily breaks promises to others",
+  "Easily led astray by a pretty face",
+  "Exceptionally greedy despite its dangers",
+  "Has fits of violent anger",
+  "Irrational hatred for a class or type",
+  "Leaves a trail of mistreated lovers",
+  "Lies even when it’s not terribly useful",
+  "Militantly unfaithful to their partner",
+  "Obsessed with a very expensive pastime",
+  "Promises far more than they actually do",
+  "Prone to betraying unprofitable causes",
+  "Prone to fits of cowardice",
+  "Reckless desire for fame and glory",
+  "Spendthrift prone to getting into debt",
+  "Steals even when it’s not very convenient",
+  "Thoughtless with those closest to them"
+]
+
+const problem = [
+  "A family member or friend has a problem",
+  "A subordinate wants their job",
+  "Their kids are doing something stupid",
+  "Their spouse or partner is furious",
+  "Their superior is very displeased with them",
+  "They botched their last responsibility",
+  "They hate their current job or boss",
+  "They need rare or costly medical aid",
+  "They owe more than they can pay",
+  "They’re being blackmailed or coerced",
+  "They’re being pursued by a dire nemesis",
+  "They’re in dire need of money",
+  "They’re stifled and bored in their job",
+  "They’re struggling with mental trauma",
+  "They’ve been given a job too big for them",
+  "They’ve earned a dangerous foe",
+  "They’ve gotten addicted to something",
+  "They’ve inherited someone else’s problem",
+  "They’ve lost or had stolen a vital thing",
+  "They’ve made promises they can’t keep"
+]
+
+const desire = [
+  "They want an appealing new lover",
+  "They want more leisure time to themselves",
+  "They want more money",
+  "They want respect and admiration",
+  "They want to acquire a different job",
+  "They want to boost a friend’s career",
+  "They want to carry out a secret command",
+  "They want to depose their boss",
+  "They want to earn forgiveness",
+  "They want to escape their past choices",
+  "They want to harm an enemy organization",
+  "They want to indulge in pleasures",
+  "They want to kill some enemy",
+  "They want to leave their current life",
+  "They want to live in a different place",
+  "They want to obtain a particular item",
+  "They want to prove themselves to others",
+  "They want to pursue a tempting secret",
+  "They want to rescue someone from trouble",
+  "They want to take revenge on a foe"
+]
+
+const name = {
+  "name_elements": { },
+  "corp_elements": [ ]
+}
+
+function pickFrom(arr) {
+    return arr[math.floor(random() * arr.length)]
+}
+
+function genName() {
+    // Arrays for different components of the name
+    const cyberpunkStreetNames = {
+        "first_names": [
+            "Rex",
+            "Nova",
+            "Jax",
+            "Luna",
+            "Cyrus",
+            "Zara",
+            "Kai",
+            "Aria",
+            "Dex",
+            "Nyx",
+            "Jett",
+            "Echo",
+            "Mara",
+            "Ryder",
+            "Vega",
+            "Kira",
+            "Talon",
+            "Sable",
+            "Axel",
+            "Riley",
+            "Dara",
+            "Xander",
+            "Lyra",
+            "Drake",
+            "Vesper",
+            "Tess",
+            "Zane",
+            "Kaden",
+            "Rogue",
+            "Sirius",
+            "Riley",
+            "Milo",
+            "Ava",
+            "Bane",
+            "Nico",
+            "Kai",
+            "Elara",
+            "Dash",
+            "Juno",
+            "Hawk",
+            "Rex",
+            "Sloane",
+            "Vera",
+            "Jaxen",
+            "Nina",
+            "Ryder",
+            "Zion",
+            "Axel",
+            "Lena",
+            "Xander",
+            "Echo",
+            "Nix",
+            "Rex",
+            "Riley",
+            "Dax",
+            "Kai",
+            "Luna",
+            "Nova",
+            "Zenith",
+            "Lara",
+            "Drake",
+            "Zara",
+            "Sable",
+            "Juno",
+            "Mara",
+            "Talon",
+            "Echo",
+            "Luna",
+            "Axel",
+            "Dex",
+            "Cyrus",
+            "Ava",
+            "Milo",
+            "Vera",
+            "Jett",
+            "Dara",
+            "Nix",
+            "Tess",
+            "Kaden",
+            "Vega"
+        ],
+        "last_names": [
+            "Vortex",
+            "Strider",
+            "Phoenix",
+            "Void",
+            "Steele",
+            "Vex",
+            "Shadow",
+            "Blitz",
+            "Sterling",
+            "Orion",
+            "Kincaid",
+            "Black",
+            "Haze",
+            "Blaze",
+            "Night",
+            "Flux",
+            "Frost",
+            "Xeno",
+            "Shade",
+            "Quantum",
+            "Volt",
+            "Grim",
+            "Pulse",
+            "Raven",
+            "Echo",
+            "Pyre",
+            "Nova",
+            "Steel",
+            "Vortex",
+            "Hex",
+            "Star",
+            "Thorn",
+            "Flux",
+            "Torque",
+            "Black",
+            "Shade",
+            "Vortex",
+            "Frost",
+            "Orion",
+            "Wraith",
+            "Dusk",
+            "Kade",
+            "Vex",
+            "Nova",
+            "Blaze",
+            "Haze",
+            "Night",
+            "Shadow",
+            "Wraith",
+            "Storm",
+            "Thorn",
+            "Raven",
+            "Quantum",
+            "Orion",
+            "Nightshade",
+            "Void",
+            "Rogue",
+            "Kincaid",
+            "Flux",
+            "Blaze",
+            "Steel",
+            "Xeno",
+            "Pyre",
+            "Kade",
+            "Volt",
+            "Storm",
+            "Shade",
+            "Vortex",
+            "Hex",
+            "Night",
+            "Vex",
+            "Phoenix",
+            "Orion",
+            "Frost",
+            "Wraith",
+            "Pulse",
+            "Shadow",
+            "Vortex",
+            "Blaze",
+            "Night",
+            "Quantum"
+        ]
+    }
+    const normalFirstNames = ["Alex", "Jordan", "Taylor", "Morgan", "Casey", "Jamie", "Riley", "Avery", "Reese", "Charlie", "Dylan", "Cameron", "Sydney", "Parker", "Alexis", "Quinn", "Taylor", "Dakota", "Emerson", "Blake"];
+    const normalLastNames = ["Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Rodriguez"];
+    const cyberpunkElements = [
+        "Echo",
+        "Blaze",
+        "Nex",
+        "Rift",
+        "Shade",
+        "Vortex",
+        "Pulse",
+        "Vex",
+        "Haze",
+        "Kinetic",
+        "Flux",
+        "Nebula",
+        "Shadow",
+        "Zephyr",
+        "Cipher",
+        "Nova",
+        "Bolt",
+        "Sonic",
+        "Drift",
+        "Quantum",
+        "Storm",
+        "Frost",
+        "Wraith",
+        "Rogue",
+        "Zenith",
+        "Hacker",
+        "Nebula",
+        "Dusk",
+        "Surge",
+        "Talon",
+        "Nexus",
+        "Phantom",
+        "Rogue",
+        "Spectre",
+        "Onyx",
+        "Vector",
+        "Psyche",
+        "Rift",
+        "Jade",
+        "Glitch",
+        "Cypher",
+        "Vortex",
+        "Pulse",
+        "Zenith",
+        "Apex",
+        "Volt",
+        "Sable",
+        "Eclipse",
+        "Quasar",
+        "Drake",
+        "Raven",
+        "Myst",
+        "Glimmer",
+        "Specter",
+        "Nova",
+        "Echo",
+        "Dash",
+        "Star",
+        "Nox",
+        "Axon",
+        "Kade",
+        "Void",
+        "Flare",
+        "Shimmer",
+        "Vortex",
+        "Tess",
+        "Frost",
+        "Neon",
+        "Raze"
+    ]
+
+    // Decide randomly between a cyberpunk or normal name
+    const choice = Math.floor(random() * 3);
+
+    if (choice === 0) {
+        return `${pickFrom(cyberpunkStreetNames.first_names)} ${pickFrom(cyberpunkStreetNames.last_names)}`;
+    } else if (choice === 1) {
+        // Normal name format
+        const firstName = pickFrom(normalFirstNames);
+        const lastName = pickFrom(normalLastNames);
+        return `${firstName} ${lastName}`;
+    } else {
+        const firstName = pickFrom(normalFirstNames);
+        const lastName = pickFrom(normalLastNames);
+        const cyberpunkElement = pickFrom(cyberpunkElements);
+        return `${firstName} <i>"${cyberpunkElement}"</i> ${lastName}`;
+    }
+}
+
+</script>
+
+<div class="flex">
+  <div class="f1 mr3 mt4">]]</div>
+  <div class="f1">
+      <div class="f3 mb2 b i">##.NPC_ENTRY_{{ config.seed }}</div>
+      {% if config.name_overwrite %}
+        {{ config.name_overwrite }} <script>genName()</script>
+      {% else %}
+        <script>document.write(genName())</script> 
+      {% endif %}
+  </div>
+</div>
+
+<div class="lh-copy bl bw3 pl3 mt4">
+    <div class="b f3 i tracked">##.MAIN_FOCUS</div>
+    <div class="f3"><script>document.write(pickFrom(focus))</script></div>
+</div>
+
+<div class="lh-copy bl bw3 pl3 mt4">
+    <div class="b f3 i tracked">##.VIRTUE/or/QUALITY</div>
+    <div class="f3"><script>document.write(pickFrom(virtue))</script></div>
+</div>
+
+<div class="lh-copy bl bw3 pl3 mt4">
+    <div class="b f3 i tracked">##.FLAW</div>
+    <div class="f3"><script>document.write(pickFrom(flaw))</script></div>
+</div>
+
+<div class="lh-copy bl bw3 pl3 mt4">
+    <div class="b f3 i tracked">##.CURRENT_PROBLEM</div>
+    <div class="f3"><script>document.write(pickFrom(problem))</script></div>
+</div>
+<div class="lh-copy bl bw3 pl3 mt4">
+    <div class="b f3 i tracked">##.CURRENT_DESIRE</div>
+    <div class="f3"><script>document.write(pickFrom(desire))</script></div>
+</div>

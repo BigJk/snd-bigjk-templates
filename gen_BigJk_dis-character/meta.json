@@ -1,0 +1,11 @@
+{
+	"name": "Death In Space Character",
+	"slug": "dis-character",
+	"author": "BigJk",
+	"description": "Death In Space Character Generator",
+	"passEntriesToJS": false,
+	"config": [],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

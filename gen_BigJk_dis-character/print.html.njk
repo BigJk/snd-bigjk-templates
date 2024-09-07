@@ -244,7 +244,8 @@ const char = {
     trinket: pickFrom(personalTrinket),
     extraEquip: '',
     extra: '',
-    ability: null
+    ability: null,
+    holos: dice.roll('3d10').total
 }
 
 if (char.stats.bdy + char.stats.dex + char.stats.svy + char.stats.tec < 0) {
@@ -366,6 +367,15 @@ if (typeof char.drive === 'function') {
         </div>
     </div>
     <div class="lh-copy f4">
+        <div class="mb2 flex">
+            <div class="mr3">
+                <span class="b">ITEM SLOTS:</span> <script> document.write(12 + char.stats.bdy)</script>
+            </div>
+            <div>
+                <span class="b">$ HOLOS:</span> <script> document.write(char.holos)</script>
+            </div>
+        </div>
+
         <div class="mb2">
             <span class="b"><script> document.write(char.startKit)</script></span>:
             <script> document.write(packTypeContent[char.startKit])</script>

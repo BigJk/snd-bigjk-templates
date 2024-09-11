@@ -1,0 +1,49 @@
+<script src="https://rawcdn.githack.com/BigJk/snd-bigjk-templates/6dc5dfd11a735a16483225195bddf46ab4d25ee5/scripts/base.js"></script>
+<script src="https://rawcdn.githack.com/BigJk/snd-bigjk-templates/6dc5dfd11a735a16483225195bddf46ab4d25ee5/scripts/random.js"></script>
+<script src="https://rawcdn.githack.com/BigJk/snd-bigjk-templates/6dc5dfd11a735a16483225195bddf46ab4d25ee5/scripts/gen-dis-station.js"></script>
+<script>
+    addGoogleFont('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap', true)
+
+    const layout  = DISStationGen.generateStationGrid({{ config.width }}, {{ config.height }}, {{ config.emptiness.selected }}, {{ config.corridor.selected }})
+    const station = DISStationGen.fillStation(layout, {})
+</script>
+
+<div class="w-100 bg-black white pa2 ph3 b mb2 f3 lh-copy flex justify-between">
+    <span class="i">##STATION:</span> <script>document.write(station.name)</script>
+</div>
+<div class="pa3 ba bw2 b--dashed">
+    <div class="w-100 h-100 flex flex-wrap">
+        <script>
+            dw(DISStationGen.printStationGrid(station))
+        </script>
+    </div>
+</div>
+
+<div>
+    <script>
+        if (aiEnabled) {
+            dw(div('f3 lh-copy mt3 bg-black white ph3 pv1 mb2 b lh-solid', 'BACKSTORY'))
+
+            const system = 'You are a export in writing short backstories for scifi horror TTRPG settings. You should write in a style that is usefull for the game master with focus on packing as many information in as small of a text possible. You are allowed to use HTML to format text. Avoid using a leading heading. Prefer bullet point lists.';
+            const user = `Write a short backstory for a abandoned space station called "${station.name}". The rooms it contains are ${station.rooms.map(room => `#${room.id} ${room.module.name} status=${room.status}`).join(', ')}. Keep it very very short. You are allowed to just list short phrases instead of building full sentences. Use HTML and no markdown. Answer the following questions: What was its original purpose? Why is it abandoned? What danger is still present? What could the players gain from entering?`;
+            const theme = "{{ config.ai_theme }}"
+
+            const story = aiPrompt(system, theme.length > 0 ? user + `. Please use this theme as guidance: ${theme}` : user)
+
+            dw(div('f4 lh-copy', story))
+        }
+    </script>
+</div>
+
+<div>
+    <script>
+        dw(div('f3 lh-copy mt3 bg-black white ph3 pv1 mb2 b', 'ROOMS'))
+
+        station.rooms.forEach((room, i) => {
+            dw(div('f3 mt3 flex justify-between bb bw2 mb2 pb2', [
+                `<span><b class="dib" style="width: 50px;">${i+1}${room.module.essential ? 'E' : ''}.</b> ${room.module.name}</span>`,
+            ]))
+            dw(div('f4 mb3', [room.module.purpose, room.status].join(' - ')))
+        })
+    </script>
+</div>

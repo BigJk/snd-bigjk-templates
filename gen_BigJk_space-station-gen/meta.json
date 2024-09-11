@@ -1,0 +1,70 @@
+{
+	"name": "DiS Station Generator",
+	"slug": "space-station-gen",
+	"author": "BigJk",
+	"description": "Abandoned space station generator for Death in Space and similar Horror Sci-Fi TTRPGs.",
+	"copyrightNotice": "",
+	"passEntriesToJS": false,
+	"config": [
+		{
+			"key": "width",
+			"name": "Width",
+			"description": "Room count width",
+			"type": "Number",
+			"default": 4
+		},
+		{
+			"key": "height",
+			"name": "Height",
+			"description": "Room count height",
+			"type": "Number",
+			"default": 4
+		},
+		{
+			"key": "emptiness",
+			"name": "Emptiness Modifier",
+			"description": "How empty the station should be",
+			"type": "Options",
+			"default": {
+				"choices": [
+					"1",
+					"2",
+					"3",
+					"4",
+					"5",
+					"6",
+					"7"
+				],
+				"selected": "3"
+			}
+		},
+		{
+			"key": "corridor",
+			"name": "Corridor Modifier",
+			"description": "How many corridors should be generated",
+			"type": "Options",
+			"default": {
+				"choices": [
+					"1",
+					"3",
+					"6",
+					"10",
+					"15",
+					"20",
+					"50"
+				],
+				"selected": "10"
+			}
+		},
+		{
+			"key": "ai_theme",
+			"name": "AI Theme",
+			"description": "Specify a theme that the AI should try to use",
+			"type": "Text",
+			"default": ""
+		}
+	],
+	"images": {},
+	"dataSources": [],
+	"version": ""
+}

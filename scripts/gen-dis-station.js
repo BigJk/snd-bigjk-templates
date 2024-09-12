@@ -577,6 +577,9 @@ const DISStationGen = {
 
     // Assign room IDs and collect rooms
     const rooms = [];
+    const corridors = [];
+
+    let corridorID = 1;
     let roomID = 1;
     for (let x = 0; x < height; x++) {
       for (let y = 0; y < width; y++) {
@@ -584,6 +587,9 @@ const DISStationGen = {
         if (cell?.type === "BASIC_ROOM") {
           cell.id = roomID++;
           rooms.push(cell);
+        } else if (cell) {
+          cell.id = corridorID++;
+          corridors.push(cell);
         }
       }
     }
@@ -593,7 +599,16 @@ const DISStationGen = {
       width,
       height,
       rooms,
+      corridors,
       roomCount: roomID - 1,
+      corridorCount: corridorID - 1,
+      visit: (fn) => {
+        for (let x = 0; x < height; x++) {
+          for (let y = 0; y < width; y++) {
+            fn(grid[x][y], x, y);
+          }
+        }
+      },
     };
   },
 
@@ -650,7 +665,13 @@ const DISStationGen = {
   /**
    * Creates a HTML representation of a station grid
    */
-  printStationGrid(station) {
+  printStationGrid(station, options = {}) {
+    options = {
+      showRoomIDs: true,
+      showCorridorIDs: false,
+      ...options,
+    };
+
     return div(
       "w-100 h-100 flex flex-wrap",
       (() => {
@@ -699,31 +720,46 @@ const DISStationGen = {
                     })
                     .join("");
 
-                  return div("w-100 h-100 ba bw2 br3 b f3 pa2 relative", `${cell.id}${cell?.module?.essential ? "E" : ""}${doors}`);
+                  const id = options.showRoomIDs ? `${cell.id}${cell?.module?.essential ? "E" : ""}` : "";
+
+                  return div("w-100 h-100 ba bw2 br3 b f3 pa2 relative", `${id}${doors}`);
               }
 
               if (type) {
                 return div(
-                  "w-100 h-100 relative",
-                  type
-                    .split("")
-                    .map((c) => {
-                      switch (c) {
-                        case "B":
-                          return div(
-                            "absolute",
-                            "bottom: -10px; left: calc(50% - 5px); width: 10px; height: calc(50% + 10px); background: black;",
-                            "",
-                          );
-                        case "T":
-                          return div("absolute", "top: -10px; left: calc(50% - 5px); width: 10px; height: calc(50% + 10px); background: black;", "");
-                        case "L":
-                          return div("absolute", "left: -10px; top: calc(50% - 5px); width: calc(50% + 15px); height: 10px; background: black;", "");
-                        case "R":
-                          return div("absolute", "right: -10px; top: calc(50% - 5px); width: calc(50% + 15px); height: 10px; background: black;", "");
-                      }
-                    })
-                    .join(""),
+                  "w-100 h-100 relative f3 b pa2",
+                  (options.showCorridorIDs ? `C${cell.id}` : "") +
+                    type
+                      .split("")
+                      .map((c) => {
+                        switch (c) {
+                          case "B":
+                            return div(
+                              "absolute",
+                              "bottom: -10px; left: calc(50% - 5px); width: 10px; height: calc(50% + 10px); background: black;",
+                              "",
+                            );
+                          case "T":
+                            return div(
+                              "absolute",
+                              "top: -10px; left: calc(50% - 5px); width: 10px; height: calc(50% + 10px); background: black;",
+                              "",
+                            );
+                          case "L":
+                            return div(
+                              "absolute",
+                              "left: -10px; top: calc(50% - 5px); width: calc(50% + 15px); height: 10px; background: black;",
+                              "",
+                            );
+                          case "R":
+                            return div(
+                              "absolute",
+                              "right: -10px; top: calc(50% - 5px); width: calc(50% + 15px); height: 10px; background: black;",
+                              "",
+                            );
+                        }
+                      })
+                      .join(""),
                 );
               }
 

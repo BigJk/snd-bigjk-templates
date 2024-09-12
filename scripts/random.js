@@ -56,10 +56,10 @@ function pickRandomByWeight(arr, weights) {
 
 /**
  * Shortcut for rolling a dice
- * @param {string} dice - The dice to roll (e.g. '2d6 + 5')
+ * @param {string} diceStr - The dice to roll (e.g. '2d6 + 5')
  */
-function roll(dice) {
-  dice.roll(dice).total;
+function roll(diceStr) {
+  return dice.roll(diceStr).total;
 }
 
 window._bigjk ??= {};
